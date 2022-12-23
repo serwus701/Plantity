@@ -7,7 +7,7 @@ def user_interface():
 
     logged = True
     while logged:
-        user_input = input("1: exit\n2: search for plants")
+        user_input = input("1: log out\n2: search for plants")
 
         if user_input == "1":
             logged = False
@@ -19,7 +19,7 @@ def user_interface():
 
 def expert_interface():
     logged = True
-    user_input = input("1: exit\n2: add plant\n3: edit plant description\n4: report an issue\n")
+    user_input = input("1: log out\n2: add plant\n3: edit plant description\n4: report an issue\n")
 
     while logged:
         if user_input == "1":
@@ -35,7 +35,7 @@ def expert_interface():
 
 def admin_interface():
     logged = True
-    user_input = input("1: exit\n2: add expert\n3: delete client\n4: delete expert\n5: hide record\n6: add expert\n7: delete record")
+    user_input = input("1: log out\n2: add expert\n3: delete client\n4: delete expert\n5: hide record\n6: add expert\n7: delete record")
 
     while logged:
         if user_input == "1":
