@@ -13,3 +13,6 @@ def login(login, password):
         expert_interface()
     elif sql_request_login(login, password) == 3:
         admin_interface()
+
+def exit_app():
+    quit(0)

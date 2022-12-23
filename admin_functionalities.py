@@ -8,9 +8,6 @@ def delete_client():
 def delete_expert():
     print("123")
 
-def add_expert():
-    print("123")
-
 def hide_record():
     print("123")
 
