@@ -1,5 +1,5 @@
 from UI import user_interface, expert_interface, admin_interface
-from sql_requests import sql_request_login
+from shared_sql_requests import sql_request_login
 
 def start():
     app_is_open = True
