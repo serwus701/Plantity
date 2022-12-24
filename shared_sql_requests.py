@@ -10,19 +10,6 @@ url = 'mysql://login_manager:loginpassword123@127.0.0.1/plants'
 engine = create_engine(url)
 connection = engine.connect()
 
-def do_sum_sql_request():
-
-    sql_query = "SELECT * FROM users WHERE user_login = ?"
-
-    login = "slaby_gracz"
-
-    df = pd.read_sql_query(sql_query, engine, login)
-    #df.head()
-
-    record = df.iloc[0]['lastname']
-
-    print(record)
-
 def sql_request_login(login, password):
 
     sql_query = """SELECT * FROM users WHERE user_login = %s"""

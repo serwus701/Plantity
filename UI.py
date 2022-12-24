@@ -1,6 +1,6 @@
 from admin_functionalities import add_expert, delete_client, delete_expert, hide_record, delete_record
 from expert_functionalities import add_plant, edit_plant_description, report_an_issue
-from user_functionalitioes import search_for_plant
+from user_functionalities import search_for_plant
 
 
 def user_interface():
