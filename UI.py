@@ -1,10 +1,9 @@
 from admin_functionalities import add_expert, delete_client, delete_expert, hide_record, delete_record
 from expert_functionalities import add_plant, edit_plant_description, report_an_issue
-from user_functionalities import search_for_plant
+from user_functionalities import search_for_plant_in_encyclopedia
 
 
 def user_interface():
-
     logged = True
     while logged:
         user_input = input("1: log out\n2: search for plants")
@@ -12,7 +11,7 @@ def user_interface():
         if user_input == "1":
             logged = False
         elif user_input == "2":
-            search_for_plant()
+            search_for_plant_in_encyclopedia()
         else:
             print("wrong input")
 
@@ -33,9 +32,11 @@ def expert_interface():
         else:
             print("wrong input")
 
+
 def admin_interface():
     logged = True
-    user_input = input("1: log out\n2: add expert\n3: delete client\n4: delete expert\n5: hide record\n6: add expert\n7: delete record")
+    user_input = input(
+        '1: log out\n2: add expert\n3: delete client\n4: delete expert\n5: hide record\n6: add expert\n7: delete record')
 
     while logged:
         if user_input == "1":
