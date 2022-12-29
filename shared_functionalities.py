@@ -1,6 +1,7 @@
 from UI import user_interface, expert_interface, admin_interface
 from shared_sql_requests import sql_request_login
 
+user_logged = ""
 def start():
     app_is_open = True
     while app_is_open:
@@ -15,13 +16,17 @@ def start():
             print("invalid login or password")
 
 def login(login, password):
+    global user_logged
     login_result = sql_request_login(login, password)
 
     if login_result == 1:
+        user_logged = login
         user_interface()
     elif login_result == 2:
+        user_logged = login
         expert_interface()
     elif login_result == 3:
+        user_logged = login
         admin_interface()
     return login_result
 

@@ -1,17 +1,22 @@
 from admin_functionalities import add_expert, delete_client, delete_expert, hide_record, delete_record
-from expert_functionalities import add_plant, edit_plant_description, report_an_issue
-from user_functionalities import search_for_plant_in_encyclopedia
+from expert_functionalities import add_plant, edit_plant_description
+#from shared_functionalities import report_an_issue
+from user_functionalities import search_for_plant_in_encyclopedia, add_plant_to_library, show_library
 
 
 def user_interface():
     logged = True
     while logged:
-        user_input = input("1: log out\n2: search for plants")
+        user_input = input("1: log out\n2: search for plants\n3: add plant to library\n4: show library")
 
         if user_input == "1":
             logged = False
         elif user_input == "2":
             search_for_plant_in_encyclopedia()
+        elif user_input == "3":
+            add_plant_to_library()
+        elif user_input == "4":
+            show_library()
         else:
             print("wrong input")
 
@@ -28,7 +33,8 @@ def expert_interface():
         elif user_input == "3":
             edit_plant_description()
         elif user_input == "4":
-            report_an_issue()
+            #report_an_issue()
+            print("dupa")
         else:
             print("wrong input")
 
