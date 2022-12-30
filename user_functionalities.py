@@ -2,7 +2,7 @@ import sys
 from sqlalchemy import create_engine
 
 from user_sql_requests import sql_request_search_for_plants, sql_request_add_plant_to_library, \
-    sql_request_get_plants_from_library
+    sql_request_get_plants_from_library, sql_request_delete_from_library
 
 url = 'mysql://user:123password@127.0.0.1/plants'
 engine = create_engine(url)
@@ -38,8 +38,10 @@ def add_plant_to_library():
 def show_library():
     result = sql_request_get_plants_from_library(connection)
 
+    sys.stdout.write("\n")
+
     for i in range(result[1]):
-        sys.stdout.write("Plant nickname: " + str(result[0][i][0]) + "\n")
+        sys.stdout.write(str(i) + ": Plant nickname: " + str(result[0][i][0]) + "\n")
         sys.stdout.write("Species name: " + str(result[0][i][2]) + "\n\n")
 
     loop = True
@@ -65,6 +67,16 @@ def show_plant_in_library(plant_nickname):
         sys.stdout.write("Amount of water: " + str(result[0][i][6]) + ", Difficulty: " + str(result[0][i][7]) + "\n\n")
 
 
-
 def delete_from_library():
-    print("123")
+    result = sql_request_get_plants_from_library(connection)
+
+    for i in range(result[1]):
+        sys.stdout.write(str(i) + ": Plant nickname: " + str(result[0][i][0]) + "\n")
+        sys.stdout.write("Species name: " + str(result[0][i][2]) + "\n\n")
+
+    plant_numer_to_delete = input("Insert plant position to delete:")
+    try:
+        plant_nickname = result[0][int(plant_numer_to_delete)][0]
+        sql_request_delete_from_library(connection, plant_nickname)
+    except:
+        print("invalid number")

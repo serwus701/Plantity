@@ -68,3 +68,8 @@ def sql_request_get_plants_from_library(connection):
         result_array.insert(0, temp_result)
 
     return result_array, size
+
+
+def sql_request_delete_from_library(connection, plant_nickname):
+    sql_query = """DELETE FROM plants.plants WHERE plant_name = %s"""
+    connection.execute(sql_query, plant_nickname)
