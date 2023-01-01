@@ -1,5 +1,5 @@
 from admin_functionalities import add_expert, delete_client, delete_expert, hide_record, delete_record
-from expert_functionalities import add_plant, edit_plant_description
+from expert_functionalities import add_plant_to_encyclopedia, edit_plant_description
 # from shared_functionalities import report_an_issue
 from user_functionalities import search_for_plant_in_encyclopedia, add_plant_to_library, show_library, \
     delete_from_library
@@ -13,6 +13,7 @@ def user_interface():
 
         if user_input == "1":
             logged = False
+            continue
         elif user_input == "2":
             search_for_plant_in_encyclopedia()
         elif user_input == "3":
@@ -27,18 +28,27 @@ def user_interface():
 
 def expert_interface():
     logged = True
-    user_input = input("1: log out\n2: add plant\n3: edit plant description\n4: report an issue\n")
 
     while logged:
+        user_input = input(
+            "1: log out\n2: search for plants\n3: add plant to library\n4: show library\n5: delete from library\n6: add "
+            "plant to encyclopedia\n7: edit plant description")
+
         if user_input == "1":
             logged = False
+            continue
         elif user_input == "2":
-            add_plant()
+            search_for_plant_in_encyclopedia()
         elif user_input == "3":
-            edit_plant_description()
+            add_plant_to_library()
         elif user_input == "4":
-            # report_an_issue()
-            print("dupa")
+            show_library()
+        elif user_input == "5":
+            delete_from_library()
+        elif user_input == "6":
+            add_plant_to_encyclopedia()
+        elif user_input == "7":
+            edit_plant_description()
         else:
             print("wrong input")
 
@@ -51,6 +61,7 @@ def admin_interface():
     while logged:
         if user_input == "1":
             logged = False
+            continue
         elif user_input == "2":
             add_expert()
         elif user_input == "3":

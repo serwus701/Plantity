@@ -1,6 +1,5 @@
 import pandas as pd
 
-import shared_functionalities
 from tools import get_dataframe_size, get_library_id
 
 
