@@ -6,10 +6,11 @@ from user_sql_requests import sql_request_search_for_plants, sql_request_add_pla
 
 url = 'mysql://user:123password@127.0.0.1/plants'
 engine = create_engine(url)
-connection = engine.connect()
 
 
 def search_for_plant_in_encyclopedia():
+    connection = engine.connect()
+
     user_input = input("Insert plant name")
 
     output = sql_request_search_for_plants(connection, user_input)
@@ -22,20 +23,27 @@ def search_for_plant_in_encyclopedia():
             sys.stdout.write(" | ")
         sys.stdout.write("\n")
 
+    connection.close()
     return output
 
 
 def add_plant_to_library():
-    function_output = search_for_plant_in_encyclopedia()
+    connection = engine.connect()
+
+    search_output = search_for_plant_in_encyclopedia()
 
     position_input = input("insert record position to add")
 
-    if 0 <= int(position_input) < function_output[1]:
+    if 0 <= int(position_input) < search_output[1]:
         plant_nickname = input("insert plant nickname")
-        sql_request_add_plant_to_library(connection, function_output[0][1][int(position_input)], plant_nickname)
+        sql_request_add_plant_to_library(connection, search_output[0][1][int(position_input)], plant_nickname)
+
+    connection.close()
 
 
 def show_library():
+    connection = engine.connect()
+
     result = sql_request_get_plants_from_library(connection)
 
     sys.stdout.write("\n")
@@ -52,8 +60,12 @@ def show_library():
             continue
         show_plant_in_library(plant_nickname)
 
+    connection.close()
+
 
 def show_plant_in_library(plant_nickname):
+    connection = engine.connect()
+
     result = sql_request_get_plants_from_library(connection)
 
     for i in range(result[1]):
@@ -66,8 +78,12 @@ def show_plant_in_library(plant_nickname):
             "How often to water: " + str(result[0][i][4]) + ", Amount of sun: " + str(result[0][i][5]) + "\n")
         sys.stdout.write("Amount of water: " + str(result[0][i][6]) + ", Difficulty: " + str(result[0][i][7]) + "\n\n")
 
+    connection.close()
+
 
 def delete_from_library():
+    connection = engine.connect()
+
     result = sql_request_get_plants_from_library(connection)
 
     for i in range(result[1]):
@@ -80,3 +96,5 @@ def delete_from_library():
         sql_request_delete_from_library(connection, plant_nickname)
     except:
         print("invalid number")
+
+    connection.close()

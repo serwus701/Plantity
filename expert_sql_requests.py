@@ -4,3 +4,9 @@ def sql_request_add_plant_to_encyclopedia(connection, user_input):
 
     connection.execute(sql_query, (user_input[0], user_input[1], user_input[2],
                                    int(user_input[3]), int(user_input[4]), int(user_input[5]), int(user_input[6])))
+
+
+def sql_request_edit_plant_description(connection, plant_name, new_plant_description):
+    print("New data: " + new_plant_description + " " + plant_name)
+    sql_query = """UPDATE plants.encyclopedia SET species_description = %s WHERE species_name = %s"""
+    connection.execute(sql_query, (new_plant_description, plant_name))
