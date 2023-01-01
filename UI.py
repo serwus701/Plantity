@@ -1,10 +1,12 @@
-from admin_functionalities import add_expert, delete_client, delete_expert, hide_record, delete_record
+from admin_functionalities import edit_if_expert, delete_client, hide_record, delete_record
 from expert_functionalities import add_plant_to_encyclopedia, edit_plant_description
 # from shared_functionalities import report_an_issue
 from user_functionalities import search_for_plant_in_encyclopedia, add_plant_to_library, show_library, \
     delete_from_library
 
 
+# TODO: Redo entire UI in flutter (heh)
+# TODO: Rethink report issue
 def user_interface():
     logged = True
     while logged:
@@ -53,24 +55,24 @@ def expert_interface():
             print("wrong input")
 
 
+# TODO: Add admin UI
 def admin_interface():
     logged = True
-    user_input = input(
-        '1: log out\n2: add expert\n3: delete client\n4: delete expert\n5: hide record\n6: add expert\n7: delete record')
 
     while logged:
+        user_input = input(
+            '1: log out\n2: edit if expert\n3: delete client\n4: hide record\n5: add expert\n6: delete record')
+
         if user_input == "1":
             logged = False
             continue
         elif user_input == "2":
-            add_expert()
+            edit_if_expert()
         elif user_input == "3":
             delete_client()
         elif user_input == "4":
-            delete_expert()
-        elif user_input == "5":
             hide_record()
-        elif user_input == "6":
+        elif user_input == "5":
             delete_record()
         else:
             print("wrong input")

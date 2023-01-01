@@ -2,6 +2,11 @@ from UI import user_interface, expert_interface, admin_interface
 from shared_sql_requests import sql_request_login
 
 user_logged = ""
+
+
+# TODO: Add change password option
+# TODO: Add registration option
+
 def start():
     app_is_open = True
     while app_is_open:
@@ -14,6 +19,7 @@ def start():
 
         if login(login_input, password_input) == 0:
             print("invalid login or password")
+
 
 def login(login, password):
     global user_logged
@@ -33,6 +39,7 @@ def login(login, password):
 
 def exit_app():
     quit(0)
+
 
 def report_an_issue():
     print("123")

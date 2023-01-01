@@ -18,11 +18,12 @@ def sql_request_login(login, password):
             else:
                 return 1
     except:
-        123
-    sql_query = """SELECT * FROM admins WHERE admin_login = %s"""
-    df = pd.read_sql_query(sql_query, connection, params=[login])
-    try:
-        if df.iloc[0]["admin_password"] == password:
-            return 3
-    except:
-        return 0
+        sql_query = """SELECT * FROM admins WHERE admin_login = %s"""
+        df = pd.read_sql_query(sql_query, connection, params=[login])
+        try:
+            if df.iloc[0]["admin_password"] == password:
+                return 3
+        except:
+            return 0
+
+    return 0

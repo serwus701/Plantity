@@ -3,10 +3,11 @@ import pandas as pd
 from tools import get_dataframe_size, get_library_id
 
 
+# TODO: Move filter to user_functionalities
 def sql_request_search_for_plants(connection, search_text):
     column_names = ["photo_id", "species_name", "species_description", "how_often_to_water", "amount_of_sun",
                     "amount_of_water", "difficulty"]
-    result_array = [[], [], [], [], [], [], []]
+    plants_details = [[], [], [], [], [], [], []]
 
     sql_query = """SELECT * FROM plants.encyclopedia"""
 
@@ -18,11 +19,11 @@ def sql_request_search_for_plants(connection, search_text):
     for i in range(size):
         if search_text.lower() in df.iloc[i]["species_name"].lower():
             for j in range(7):
-                result_array[j].insert(0, df.iloc[i][column_names[j]])
+                plants_details[j].insert(0, df.iloc[i][column_names[j]])
         else:
             final_size -= 1
 
-    return result_array, final_size
+    return plants_details, final_size
 
 
 def sql_request_add_plant_to_library(connection, plant_name, plant_nickname):
