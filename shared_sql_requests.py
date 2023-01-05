@@ -1,5 +1,6 @@
 import pandas as pd
 from sqlalchemy import create_engine
+import hashlib
 
 url = 'mysql://login_manager:loginpassword123@127.0.0.1/plants'
 engine = create_engine(url)
@@ -12,7 +13,7 @@ def sql_request_login(login, password):
     df = pd.read_sql_query(sql_query, connection, params=[login])
 
     try:
-        if df.iloc[0]["user_password"] == password:
+        if df.iloc[0]["user_password"] == hashlib.sha256(password.encode()).hexdigest():
             if str(df.iloc[0]["is_expert"])[5] == "1":
                 return 2
             else:
@@ -21,7 +22,7 @@ def sql_request_login(login, password):
         sql_query = """SELECT * FROM admins WHERE admin_login = %s"""
         df = pd.read_sql_query(sql_query, connection, params=[login])
         try:
-            if df.iloc[0]["admin_password"] == password:
+            if df.iloc[0]["admin_password"] == hashlib.sha256(password.encode()).hexdigest():
                 return 3
         except:
             return 0
