@@ -1,4 +1,4 @@
-# TODO: Restructure passwords security
 # TODO: Add try/catch everywhere
-# TODO: Why sql returning size??
 # TODO: Add head admin account to modify moderators
+
+ZMIENIC PERMISSIONS W SPRAWKACH - admin moze usuwac libraries

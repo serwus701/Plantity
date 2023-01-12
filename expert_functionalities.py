@@ -7,21 +7,44 @@ url = 'mysql://expert:456password@127.0.0.1/plants'
 engine = create_engine(url)
 
 
+def input_check(input):
+    try:
+        if int(input) > 10:
+            raise Exception("Invalid number - too big number")
+        else:
+            return
+    except:
+        raise Exception("Invalid number - not integer")
+
+
 def add_plant_to_encyclopedia():
     connection = engine.connect()
 
     user_input = []
-    user_input.insert(0, input("Insert photo ID"))
-    user_input.insert(0, input("Insert species name"))
-    user_input.insert(0, input("Insert species description"))
-    user_input.insert(0, input("Insert how often to water"))
-    user_input.insert(0, input("Insert amount of sun"))
-    user_input.insert(0, input("Insert amount of water"))
-    user_input.insert(0, input("Insert difficulty"))
 
-    user_input.reverse()
+    try:
+        user_input.insert(0, input("Insert photo ID"))
+        user_input.insert(0, input("Insert species name"))
+        user_input.insert(0, input("Insert species description"))
 
-    sql_request_add_plant_to_encyclopedia(connection, user_input)
+        user_input.insert(0, input("Insert how often to water"))
+        input_check(user_input[0])
+
+        user_input.insert(0, input("Insert amount of sun"))
+        input_check(user_input[0])
+
+        user_input.insert(0, input("Insert amount of water"))
+        input_check(user_input[0])
+
+        user_input.insert(0, input("Insert difficulty"))
+        input_check(user_input[0])
+
+        user_input.reverse()
+
+        sql_request_add_plant_to_encyclopedia(connection, user_input)
+
+    except Exception as e:
+        print(e)
 
     connection.close()
 

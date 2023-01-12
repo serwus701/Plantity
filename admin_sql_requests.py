@@ -1,6 +1,7 @@
 import pandas as pd
 
-from tools import get_dataframe_size
+import shared_functionalities
+from tools import get_dataframe_size, get_library_id
 
 
 def sql_request_print_users(connection):
@@ -30,6 +31,14 @@ def sql_request_delete_record(connection, plant_name):
 
 
 def sql_request_delete_client(connection, user_login):
+    sql_query = """DELETE FROM plants.plants WHERE library_id = %s"""
+
+    connection.execute(sql_query, get_library_id(user_login))
+
+    sql_query = """DELETE FROM plants.libraries WHERE library_id = %s"""
+
+    connection.execute(sql_query, get_library_id(user_login))
+
     sql_query = """DELETE FROM plants.users WHERE user_login = %s"""
 
     connection.execute(sql_query, user_login)

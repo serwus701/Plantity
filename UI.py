@@ -55,7 +55,6 @@ def expert_interface():
             print("wrong input")
 
 
-# TODO: Add admin UI
 def admin_interface():
     logged = True
 

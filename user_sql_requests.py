@@ -1,9 +1,9 @@
 import pandas as pd
 
+import shared_functionalities
 from tools import get_dataframe_size, get_library_id
 
 
-# TODO: Move filter to user_functionalities
 def sql_request_search_for_plants(connection, search_text):
     plants_details = {"photo_id": [], "species_name": [], "species_description": [], "how_often_to_water": [],
                       "amount_of_sun": [], "amount_of_water": [], "difficulty": []}
@@ -27,7 +27,7 @@ def sql_request_add_plant_to_library(connection, species_name, plant_nickname):
     df = pd.read_sql_query(sql_query, connection, params=[species_name])
     species_id = df.iloc[0]["species_id"]
 
-    library_id = get_library_id()
+    library_id = get_library_id(shared_functionalities.user_logged)
 
     sql_query = """INSERT INTO plants.plants (plant_name, species_id, library_id) VALUES (%s, %s, %s)"""
     connection.execute(sql_query, (plant_nickname, species_id, library_id))
@@ -38,7 +38,7 @@ def sql_request_get_plants_from_library(connection):
                       "how_often_to_water": [],
                       "amount_of_sun": [], "amount_of_water": [], "difficulty": []}
 
-    library_id = get_library_id()
+    library_id = get_library_id(shared_functionalities.user_logged)
 
     sql_query = """SELECT * FROM plants.plants WHERE library_id = %s"""
     library_items_df = pd.read_sql_query(sql_query, connection, params=[library_id])

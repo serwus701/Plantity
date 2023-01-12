@@ -30,7 +30,7 @@ def delete_client():
     name_to_search = input("Input username")
     users = print_and_return_users(name_to_search)
 
-    chosen_position = input("Insert position to make or unmake expert")
+    chosen_position = input("Insert position to delete client")
 
     sql_request_delete_client(connection, users["user_login"][int(chosen_position)])
 
@@ -38,7 +38,6 @@ def delete_client():
 
 
 # TODO: Rethink hide record
-# TODO: Delete client
 def hide_record():
     print("123")
 
