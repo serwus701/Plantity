@@ -5,30 +5,26 @@ from tools import get_dataframe_size, get_library_id
 
 # TODO: Move filter to user_functionalities
 def sql_request_search_for_plants(connection, search_text):
-    column_names = ["photo_id", "species_name", "species_description", "how_often_to_water", "amount_of_sun",
-                    "amount_of_water", "difficulty"]
-    plants_details = [[], [], [], [], [], [], []]
+    plants_details = {"photo_id": [], "species_name": [], "species_description": [], "how_often_to_water": [],
+                      "amount_of_sun": [], "amount_of_water": [], "difficulty": []}
 
     sql_query = """SELECT * FROM plants.encyclopedia"""
 
     df = pd.read_sql_query(sql_query, connection)
 
     size = get_dataframe_size(df)
-    final_size = size
 
     for i in range(size):
         if search_text.lower() in df.iloc[i]["species_name"].lower():
-            for j in range(7):
-                plants_details[j].insert(0, df.iloc[i][column_names[j]])
-        else:
-            final_size -= 1
+            for key in plants_details:
+                plants_details[key].insert(0, df.iloc[i][key])
 
-    return plants_details, final_size
+    return plants_details
 
 
-def sql_request_add_plant_to_library(connection, plant_name, plant_nickname):
+def sql_request_add_plant_to_library(connection, species_name, plant_nickname):
     sql_query = """SELECT species_id FROM plants.encyclopedia WHERE species_name = %s"""
-    df = pd.read_sql_query(sql_query, connection, params=[plant_name])
+    df = pd.read_sql_query(sql_query, connection, params=[species_name])
     species_id = df.iloc[0]["species_id"]
 
     library_id = get_library_id()
@@ -38,10 +34,9 @@ def sql_request_add_plant_to_library(connection, plant_name, plant_nickname):
 
 
 def sql_request_get_plants_from_library(connection):
-    column_names = ["photo_id", "species_name", "species_description", "how_often_to_water",
-                    "amount_of_sun",
-                    "amount_of_water", "difficulty"]
-    result_array = [[], [], [], [], [], [], [], []]
+    plants_details = {"plant_name": [], "photo_id": [], "species_name": [], "species_description": [],
+                      "how_often_to_water": [],
+                      "amount_of_sun": [], "amount_of_water": [], "difficulty": []}
 
     library_id = get_library_id()
 
@@ -58,16 +53,14 @@ def sql_request_get_plants_from_library(connection):
         sql_query = """SELECT * FROM plants.encyclopedia WHERE species_name = %s"""
         species_df = pd.read_sql_query(sql_query, connection, params=[species_name])
 
-        temp_result = []
-        temp_result.insert(0, library_items_df.iloc[i]["plant_name"])
-        for j in range(7):
-            temp_result.insert(0, species_df.iloc[0][column_names[j]])
+        plants_details["plant_name"].insert(i, library_items_df.iloc[i]["plant_name"])
 
-        temp_result.reverse()
+        for key in plants_details:
+            if key == "plant_name":
+                continue
+            plants_details[key].insert(i, species_df.iloc[0][key])
 
-        result_array.insert(0, temp_result)
-
-    return result_array, size
+    return plants_details
 
 
 def sql_request_delete_from_library(connection, plant_nickname):

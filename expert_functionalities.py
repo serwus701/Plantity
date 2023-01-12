@@ -28,13 +28,12 @@ def add_plant_to_encyclopedia():
 
 def edit_plant_description():
     connection = engine.connect()
-    search_output = search_for_plant_in_encyclopedia()
+    plant_details = search_for_plant_in_encyclopedia()
 
     position_input = input("insert position to edit description")
-    if 0 <= int(position_input) < search_output[1]:
-
+    if 0 <= int(position_input) < len(plant_details["species_name"]):
         new_plant_description = input("insert new plant description: ")
-        sql_request_edit_plant_description(connection, search_output[0][1][int(position_input)], new_plant_description)
+        sql_request_edit_plant_description(connection, plant_details["species_name"][int(position_input)],
+                                           new_plant_description)
 
     connection.close()
-

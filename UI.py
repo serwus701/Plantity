@@ -61,7 +61,7 @@ def admin_interface():
 
     while logged:
         user_input = input(
-            '1: log out\n2: edit if expert\n3: delete client\n4: hide record\n5: add expert\n6: delete record')
+            '1: log out\n2: edit if expert\n3: delete client\n4: hide record\n5: delete record')
 
         if user_input == "1":
             logged = False
