@@ -18,8 +18,14 @@ def edit_if_expert():
 
     chosen_position = input("Insert position to make or unmake expert")
 
-    sql_request_edit_if_expert(connection, users["username"][int(chosen_position)],
-                               str(users["is_expert"][int(chosen_position)])[5] == "0")
+    try:
+        if 0 <= int(chosen_position) < len(users["user_login"]):
+            sql_request_edit_if_expert(connection, users["user_login"][int(chosen_position)],
+                                       str(users["is_expert"][int(chosen_position)])[5] == "0")
+        else:
+            print("Invalid input - not in range")
+    except:
+        print("Invalid input - not int")
 
     connection.close()
 
@@ -32,7 +38,13 @@ def delete_client():
 
     chosen_position = input("Insert position to delete client")
 
-    sql_request_delete_client(connection, users["user_login"][int(chosen_position)])
+    try:
+        if 0 <= int(chosen_position) < len(users["user_login"]):
+            sql_request_delete_client(connection, users["user_login"][int(chosen_position)])
+        else:
+            print("Invalid input - not in range")
+    except:
+        print("Invalid input - not int")
 
     connection.close()
 
@@ -48,8 +60,13 @@ def delete_record():
     filtered_plants = search_for_plant_in_encyclopedia()
     position_input = input("insert record position to delete")
 
-    if 0 <= int(position_input) < len(filtered_plants["species_name"]):
-        sql_request_delete_record(connection, filtered_plants["species_name"][int(position_input)])
+    try:
+        if 0 <= int(position_input) < len(filtered_plants["species_name"]):
+            sql_request_delete_record(connection, filtered_plants["species_name"][int(position_input)])
+        else:
+            print("Invalid input - not in range")
+    except:
+        print("Invalid input - not int")
 
     connection.close()
 

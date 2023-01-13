@@ -9,7 +9,7 @@ engine = create_engine(url)
 
 def input_check(input):
     try:
-        if int(input) > 10:
+        if int(input) >= 10:
             raise Exception("Invalid number - too big number")
         else:
             return

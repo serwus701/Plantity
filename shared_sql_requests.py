@@ -1,13 +1,19 @@
 import pandas as pd
-from sqlalchemy import create_engine
 import hashlib
 
-url = 'mysql://login_manager:loginpassword123@127.0.0.1/plants'
-engine = create_engine(url)
-connection = engine.connect()
+def sql_change_user_password(connection, new_password, user_name):
+    sql_query = """UPDATE plants.users SET user_password = %s WHERE user_login = %s"""
+    connection.execute(sql_query,
+                       (hashlib.sha256(new_password.encode()).hexdigest(), user_name))
 
 
-def sql_request_login(login, password):
+def sql_change_admin_password(connection, new_password, user_name):
+    sql_query = """UPDATE plants.admins SET admin_password = %s WHERE admin_login = %s"""
+    connection.execute(sql_query,
+                       (hashlib.sha256(new_password.encode()).hexdigest(), user_name))
+
+
+def sql_request_login(connection, login, password):
     sql_query = """SELECT * FROM users WHERE user_login = %s"""
 
     df = pd.read_sql_query(sql_query, connection, params=[login])

@@ -1,40 +1,41 @@
-from UI import user_interface, expert_interface, admin_interface
-from shared_sql_requests import sql_request_login
+from sqlalchemy import create_engine
+
+from shared_sql_requests import sql_change_user_password, sql_change_admin_password
+
+url = 'mysql://login_manager:loginpassword123@127.0.0.1/plants'
+engine = create_engine(url)
 
 user_logged = ""
 
 
-# TODO: Add change password option
 # TODO: Add registration option
 
-def start():
-    app_is_open = True
-    while app_is_open:
-        login_input = input("insert login (type exit to quit app)")
+def change_user_password():
+    connection = engine.connect()
 
-        if login_input == 'exit':
-            exit_app()
+    new_password = input("Insert new password")
+    new_password_2 = input("insert password again")
 
-        password_input = input("insert password")
+    if new_password == new_password_2:
+        sql_change_user_password(connection, new_password, user_logged)
+    else:
+        print("Passwords don't match")
 
-        if login(login_input, password_input) == 0:
-            print("invalid login or password")
+    connection.close()
 
 
-def login(login, password):
-    global user_logged
-    login_result = sql_request_login(login, password)
+def change_admin_password():
+    connection = engine.connect()
 
-    if login_result == 1:
-        user_logged = login
-        user_interface()
-    elif login_result == 2:
-        user_logged = login
-        expert_interface()
-    elif login_result == 3:
-        user_logged = login
-        admin_interface()
-    return login_result
+    new_password = input("Insert new password")
+    new_password_2 = input("insert password again")
+
+    if new_password == new_password_2:
+        sql_change_admin_password(connection, new_password, user_logged)
+    else:
+        print("Passwords don't match")
+
+    connection.close()
 
 
 def exit_app():
