@@ -1,6 +1,7 @@
 import pandas as pd
 import hashlib
 
+
 def sql_change_user_password(connection, new_password, user_name):
     sql_query = """UPDATE plants.users SET user_password = %s WHERE user_login = %s"""
     connection.execute(sql_query,
@@ -34,3 +35,10 @@ def sql_request_login(connection, login, password):
             return 0
 
     return 0
+
+
+def sql_request_register(connection, firstname, lastname, user_login, password):
+    sql_query = """INSERT INTO plants.users (firstname, lastname, user_login, user_password, 
+        is_expert) VALUES (%s, %s, %s, %s, %s)"""
+
+    connection.execute(sql_query, (firstname, lastname, user_login, hashlib.sha256(password.encode()).hexdigest(), False))
