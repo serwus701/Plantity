@@ -1,5 +1,0 @@
-# TODO: Add try/catch everywhere
-# TODO: Add head admin account to modify moderators
-
-ZMIENIC PERMISSIONS W SPRAWKACH - admin moze usuwac libraries
-ZMIENIC PERMISSIONS W SPRAWKACH - login manager moze update users, admins
