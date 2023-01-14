@@ -2,9 +2,9 @@ import sys
 
 from sqlalchemy import create_engine
 
-from admin_sql_requests import sql_request_print_users, sql_request_edit_if_expert, sql_request_delete_record, \
-    sql_request_delete_client
-from user_functionalities import search_for_plant_in_encyclopedia
+from functionalities.user_functionalities import search_for_plant_in_encyclopedia
+from sql_requests.admin_sql_requests import sql_request_edit_if_expert, sql_request_delete_client, \
+    sql_request_delete_record, sql_request_print_users
 
 url = 'mysql://admin:789password@127.0.0.1/plants'
 engine = create_engine(url)

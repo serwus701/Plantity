@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 
-from shared_sql_requests import sql_change_user_password, sql_change_admin_password
+from sql_requests.shared_sql_requests import sql_change_user_password, sql_change_admin_password
 
 url = 'mysql://login_manager:loginpassword123@127.0.0.1/plants'
 engine = create_engine(url)

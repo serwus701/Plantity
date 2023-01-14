@@ -1,8 +1,7 @@
-from admin_functionalities import edit_if_expert, delete_client, hide_record, delete_record
-from expert_functionalities import add_plant_to_encyclopedia, edit_plant_description
-from shared_functionalities import change_user_password, change_admin_password
-from shared_functionalities import report_an_issue
-from user_functionalities import search_for_plant_in_encyclopedia, add_plant_to_library, show_library, \
+from functionalities.admin_functionalities import edit_if_expert, delete_client, hide_record, delete_record
+from functionalities.expert_functionalities import add_plant_to_encyclopedia, edit_plant_description
+from functionalities.shared_functionalities import change_user_password, change_admin_password
+from functionalities.user_functionalities import search_for_plant_in_encyclopedia, add_plant_to_library, show_library, \
     delete_from_library
 
 

@@ -1,9 +1,9 @@
 from sqlalchemy import create_engine
 
-import shared_functionalities
 from UI import user_interface, expert_interface, admin_interface
-from shared_functionalities import exit_app
-from shared_sql_requests import sql_request_login, sql_request_register
+from functionalities import shared_functionalities
+from functionalities.shared_functionalities import exit_app
+from sql_requests.shared_sql_requests import sql_request_login, sql_request_register
 
 
 def start():

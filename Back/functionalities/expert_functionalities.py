@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 
-from expert_sql_requests import sql_request_add_plant_to_encyclopedia, sql_request_edit_plant_description
-from user_functionalities import search_for_plant_in_encyclopedia
+from functionalities.user_functionalities import search_for_plant_in_encyclopedia
+from sql_requests.expert_sql_requests import sql_request_add_plant_to_encyclopedia, sql_request_edit_plant_description
 
 url = 'mysql://expert:456password@127.0.0.1/plants'
 engine = create_engine(url)

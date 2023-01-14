@@ -1,7 +1,7 @@
 import sys
 from sqlalchemy import create_engine
 
-from user_sql_requests import sql_request_search_for_plants, sql_request_add_plant_to_library, \
+from sql_requests.user_sql_requests import sql_request_search_for_plants, sql_request_add_plant_to_library, \
     sql_request_get_plants_from_library, sql_request_delete_from_library
 
 url = 'mysql://user:123password@127.0.0.1/plants'
@@ -38,7 +38,8 @@ def add_plant_to_library():
 
     if 0 <= int(position_input) < len(filtered_plants["species_name"]):
         plant_nickname = input("insert plant nickname")
-        sql_request_add_plant_to_library(connection, filtered_plants["species_name"][int(position_input)], plant_nickname)
+        sql_request_add_plant_to_library(connection, filtered_plants["species_name"][int(position_input)],
+                                         plant_nickname)
 
     connection.close()
 
