@@ -8,22 +8,10 @@ url = 'mysql://user:123password@127.0.0.1/plants'
 engine = create_engine(url)
 
 
-def search_for_plant_in_encyclopedia():
+def search_for_plant_in_encyclopedia(user_input):
     connection = engine.connect()
 
-    user_input = input("Insert plant name")
-
     filtered_plants = sql_request_search_for_plants(connection, user_input)
-
-    size = len(filtered_plants["species_name"])
-
-    for i in range(size):
-        sys.stdout.write(str(i))
-        sys.stdout.write(": ")
-        for key in filtered_plants:
-            sys.stdout.write(str(filtered_plants[key][i]))
-            sys.stdout.write(" | ")
-        sys.stdout.write("\n")
 
     connection.close()
     return filtered_plants
