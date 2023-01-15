@@ -3,3 +3,4 @@
 
 ZMIENIC PERMISSIONS W SPRAWKACH - admin moze usuwac libraries
 ZMIENIC PERMISSIONS W SPRAWKACH - login manager moze update users, admins
+plant name in plants is unique now

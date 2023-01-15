@@ -61,10 +61,10 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _submit() async {
-    var url = 'http://10.0.2.2:5000/search/encyclopedia';
+    var url = 'http://10.0.2.2:5000//edit/encyclopedia';
     var response = await http.post(
       Uri.parse(url),
-      body: jsonEncode({'search_text': ""}),
+      body: jsonEncode({'position': 0, 'plant_description': "zmiana banana", 'search_input': ""}),
     );
 
     print(response.statusCode);

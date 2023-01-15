@@ -17,46 +17,29 @@ def input_check(input):
         raise Exception("Invalid number - not integer")
 
 
-def add_plant_to_encyclopedia():
+def add_plant_to_encyclopedia(user_input):
     connection = engine.connect()
-
-    user_input = []
 
     try:
-        user_input.insert(0, input("Insert photo ID"))
-        user_input.insert(0, input("Insert species name"))
-        user_input.insert(0, input("Insert species description"))
-
-        user_input.insert(0, input("Insert how often to water"))
-        input_check(user_input[0])
-
-        user_input.insert(0, input("Insert amount of sun"))
-        input_check(user_input[0])
-
-        user_input.insert(0, input("Insert amount of water"))
-        input_check(user_input[0])
-
-        user_input.insert(0, input("Insert difficulty"))
-        input_check(user_input[0])
-
-        user_input.reverse()
-
         sql_request_add_plant_to_encyclopedia(connection, user_input)
+        connection.close()
+        return True
+    except:
+        connection.close()
+        return False
 
-    except Exception as e:
-        print(e)
 
-    connection.close()
-
-
-def edit_plant_description():
+def edit_plant_description(position_input, new_plant_description, search_input):
     connection = engine.connect()
-    plant_details = search_for_plant_in_encyclopedia()
+    plant_details = search_for_plant_in_encyclopedia(search_input)
 
-    position_input = input("insert position to edit description")
     if 0 <= int(position_input) < len(plant_details["species_name"]):
-        new_plant_description = input("insert new plant description: ")
-        sql_request_edit_plant_description(connection, plant_details["species_name"][int(position_input)],
-                                           new_plant_description)
 
-    connection.close()
+        try:
+            sql_request_edit_plant_description(connection, plant_details["species_name"][int(position_input)],
+                                               new_plant_description)
+            connection.close()
+            return True
+        except:
+            connection.close()
+            return False

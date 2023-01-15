@@ -5,12 +5,8 @@ from sql_requests.shared_sql_requests import sql_change_user_password, sql_chang
 url = 'mysql://login_manager:loginpassword123@127.0.0.1/plants'
 engine = create_engine(url)
 
-user_logged = ""
 
-
-# TODO: Add registration option
-
-def change_user_password():
+def change_user_password(new_password, user_logged):
     connection = engine.connect()
 
     new_password = input("Insert new password")
@@ -24,7 +20,7 @@ def change_user_password():
     connection.close()
 
 
-def change_admin_password():
+def change_admin_password(new_password, user_logged):
     connection = engine.connect()
 
     new_password = input("Insert new password")

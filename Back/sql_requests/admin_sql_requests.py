@@ -3,7 +3,7 @@ import pandas as pd
 from tools import get_dataframe_size, get_library_id
 
 
-def sql_request_print_users(connection):
+def sql_request_get_users(connection):
     users_details = {"firstname": [], "lastname": [], "user_login": [], "is_expert": []}
 
     sql_query = """SELECT * FROM plants.users"""

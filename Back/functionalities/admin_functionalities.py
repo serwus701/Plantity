@@ -4,49 +4,39 @@ from sqlalchemy import create_engine
 
 from functionalities.user_functionalities import search_for_plant_in_encyclopedia
 from sql_requests.admin_sql_requests import sql_request_edit_if_expert, sql_request_delete_client, \
-    sql_request_delete_record, sql_request_print_users
+    sql_request_delete_record, sql_request_get_users
 
 url = 'mysql://admin:789password@127.0.0.1/plants'
 engine = create_engine(url)
 
 
-def edit_if_expert():
+def edit_if_expert(name_to_search, chosen_position):
     connection = engine.connect()
 
-    name_to_search = input("Input username")
-    users = print_and_return_users(name_to_search)
-
-    chosen_position = input("Insert position to make or unmake expert")
+    users = get_users(name_to_search)
 
     try:
-        if 0 <= int(chosen_position) < len(users["user_login"]):
-            sql_request_edit_if_expert(connection, users["user_login"][int(chosen_position)],
-                                       str(users["is_expert"][int(chosen_position)])[5] == "0")
-        else:
-            print("Invalid input - not in range")
+        sql_request_edit_if_expert(connection, users["user_login"][int(chosen_position)],
+                                   str(users["is_expert"][int(chosen_position)])[5] == "0")
+        connection.close()
+        return True
     except:
-        print("Invalid input - not int")
+        connection.close()
+        return False
 
-    connection.close()
 
-
-def delete_client():
+def delete_client(name_to_search, chosen_position):
     connection = engine.connect()
 
-    name_to_search = input("Input username")
-    users = print_and_return_users(name_to_search)
-
-    chosen_position = input("Insert position to delete client")
+    users = get_users(name_to_search)
 
     try:
-        if 0 <= int(chosen_position) < len(users["user_login"]):
-            sql_request_delete_client(connection, users["user_login"][int(chosen_position)])
-        else:
-            print("Invalid input - not in range")
+        sql_request_delete_client(connection, users["user_login"][int(chosen_position)])
+        connection.close()
+        return True
     except:
-        print("Invalid input - not int")
-
-    connection.close()
+        connection.close()
+        return False
 
 
 # TODO: Rethink hide record
@@ -54,38 +44,24 @@ def hide_record():
     print("123")
 
 
-def delete_record():
+def delete_record(position_input, search_text):
     connection = engine.connect()
 
-    filtered_plants = search_for_plant_in_encyclopedia()
-    position_input = input("insert record position to delete")
+    filtered_plants = search_for_plant_in_encyclopedia(search_text)
 
     try:
-        if 0 <= int(position_input) < len(filtered_plants["species_name"]):
-            sql_request_delete_record(connection, filtered_plants["species_name"][int(position_input)])
-        else:
-            print("Invalid input - not in range")
+        sql_request_delete_record(connection, filtered_plants["species_name"][int(position_input)])
+        connection.close()
+        return True
     except:
-        print("Invalid input - not int")
+        connection.close()
+        return False
 
-    connection.close()
 
-
-def print_and_return_users(name):
+def get_users(name):
     connection = engine.connect()
 
-    all_users = sql_request_print_users(connection)
-
-    size = len(all_users["user_login"])
-
-    for i in range(size):
-        if name.lower() in all_users["user_login"][i].lower():
-            sys.stdout.write(str(i) + ": " + all_users["firstname"][i] + " " + all_users["lastname"][i] + "\n")
-            sys.stdout.write(all_users["user_login"][i])
-            if str(all_users["is_expert"][i])[5] == "1":
-                sys.stdout.write(" Expert\n\n")
-            else:
-                sys.stdout.write(" User\n\n")
+    all_users = sql_request_get_users(connection)
 
     connection.close()
     return all_users
