@@ -33,6 +33,8 @@ def login(login, password):
 
     connection.close()
 
+    return login_result
+
     if login_result == 1:
         shared_functionalities.user_logged = login
         user_interface()
@@ -42,7 +44,6 @@ def login(login, password):
     elif login_result == 3:
         shared_functionalities.user_logged = login
         admin_interface()
-    return login_result
 
 
 def register():

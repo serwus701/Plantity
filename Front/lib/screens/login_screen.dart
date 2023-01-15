@@ -1,7 +1,8 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
 import 'package:front/screens/registration_screen.dart';
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
   @override
@@ -59,33 +60,20 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void _submit(){
-
-  }
-
-/*
   void _submit() async {
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
+    var url = 'http://10.0.2.2:5000/login';
+    var response = await http.post(
+      Uri.parse(url),
+      body: jsonEncode({'username': 'slaby_gracz', 'password': '123password'}),
+    );
 
-      // Make the login request to the backend
-      var response = await http.post('https://your-backend-url.com/login', body: {
-        'email': _email,
-        'password': _password
-      });
+    print(response.statusCode);
 
-      // Check the response status code
-      if (response.statusCode == 200) {
-        // Login was successful
-        // You can parse the response body to get the user's information
-        var user = jsonDecode(response.body);
-
-        // Save the user's information in the local storage or preferences
-        // Navigate to the home page
-      } else {
-        // Login failed
-        // Show an error message
-      }
+    if (response.statusCode == 200) {
+      var data = json.decode(response.body);
+      print(data);
+    } else {
+      throw Exception('Failed to load data');
     }
-  }*/
+  }
 }
