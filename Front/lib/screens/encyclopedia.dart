@@ -10,12 +10,21 @@ class ScrollableBoxesPage extends StatelessWidget {
       body: ListView.builder(
         itemCount: 10,
         itemBuilder: (BuildContext context, int index) {
-          return Container(
-            margin: EdgeInsets.all(10.0),
-            padding: EdgeInsets.all(10.0),
-            decoration: BoxDecoration(
-                color: Colors.grey[300], borderRadius: BorderRadius.circular(10.0)),
-            child: Text('Box $index'),
+          return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                CircleAvatar(
+                  radius: 50.0,
+                  backgroundImage: AssetImage('assets/start_plant.jpg'),
+                ),
+                Text(
+                  'Plant species',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.black54,
+                  ),
+                ),
+              ]
           );
         },
       ),

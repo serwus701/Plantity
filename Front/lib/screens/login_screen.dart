@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:front/screens/library_screen.dart';
 import 'package:front/screens/registration_screen.dart';
 import 'package:http/http.dart' as http;
 
@@ -131,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
   void _navigateToUser() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ScrollableBoxesPage()),
+      MaterialPageRoute(builder: (context) => ScrollableBoxesPageL()),
     );
   }
 
@@ -162,7 +163,7 @@ class _LoginPageState extends State<LoginPage> {
 
     if (response.statusCode == 200) {
       var data = json.decode(response.body);
-
+      print(data["approval"]);
       switch (data["approval"]) {
         case 1:
           {
