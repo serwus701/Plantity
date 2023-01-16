@@ -55,13 +55,21 @@ class _ScrollableBoxesPageState extends State<ScrollableBoxesPage> {
       body: ListView.builder(
         itemCount: _boxes.length,
         itemBuilder: (BuildContext context, int index) {
-          return Container(
-            margin: EdgeInsets.all(10.0),
-            padding: EdgeInsets.all(10.0),
-            decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(10.0)),
-            child: Text(_boxes[index].speciesName),
+          return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                CircleAvatar(
+                  radius: 50.0,
+                  backgroundImage: AssetImage('assets/start_plant.jpg'),
+                ),
+                Text(
+                  'Plant species',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.black54,
+                  ),
+                ),
+              ]
           );
         },
       ),
