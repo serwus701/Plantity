@@ -21,12 +21,25 @@ class _ScrollableBoxesPageState extends State<ScrollableBoxesPage> {
     var url = 'http://10.0.2.2:5000//get/encyclopedia';
     final response = await http.post(
       Uri.parse(url),
-      body: jsonEncode({'search_text': "",}),
+      body: jsonEncode({
+        'search_text': "",
+      }),
     );
     if (response.statusCode == 200) {
-      List data = jsonDecode(response.body);
+      var data = jsonDecode(response.body);
       setState(() {
-        _boxes = data.map((e) => e['species_name']).toList();
+        for (var i = 0; i < data.length; i++) {
+          print(data["photo_id"].runtimeType);
+          var record = EncyclopediaRecord(
+              data["photo_id"][i],
+              data["species_name"][i],
+              data["species_description"][i],
+              data["how_often_to_water"][i],
+              data["amount_of_sun"][i],
+              data["amount_of_water"][i],
+              data["difficulty"][i]);
+          _boxes.add(record);
+        }
       });
     } else {
       throw Exception('Failed to load boxes');
@@ -48,7 +61,7 @@ class _ScrollableBoxesPageState extends State<ScrollableBoxesPage> {
             decoration: BoxDecoration(
                 color: Colors.grey[300],
                 borderRadius: BorderRadius.circular(10.0)),
-            child: Text(_boxes[index]),
+            child: Text(_boxes[index].speciesName),
           );
         },
       ),
