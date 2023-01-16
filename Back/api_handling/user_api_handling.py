@@ -14,7 +14,7 @@ def api_search_encyclopedia():
 
     json_answer = json.dumps(search_for_plant_in_encyclopedia(search_text))
 
-    return jsonify(json_answer)
+    return json_answer
 
 
 @app.route('/add/library', methods=['POST'])
@@ -37,7 +37,7 @@ def api_show_library():
     user_logged = data['user_logged']
 
     json_answer = json.dumps(show_library(user_logged))
-    return jsonify(json_answer)
+    return json_answer
 
 
 @app.route('/delete/library', methods=['POST'])

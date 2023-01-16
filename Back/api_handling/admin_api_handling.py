@@ -13,7 +13,7 @@ def api_get_users():
 
     json_answer = json.dumps(get_users(search_text))
 
-    return jsonify(json_answer)
+    return json_answer
 
 
 @app.route('/edit/user', methods=['POST'])

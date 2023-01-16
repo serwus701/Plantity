@@ -31,6 +31,7 @@ class _ScrollableBoxesPageState extends State<ScrollableBoxesPage> {
         for (var i = 0; i < data.length; i++) {
           print(data["photo_id"].runtimeType);
           var record = EncyclopediaRecord(
+              "",
               data["photo_id"][i],
               data["species_name"][i],
               data["species_description"][i],

@@ -34,4 +34,4 @@ def api_edit_encyclopedia():
 
     json_answer = json.dumps(edit_plant_description(position, description, search_input))
 
-    return jsonify(json_answer)
+    return json_answer
