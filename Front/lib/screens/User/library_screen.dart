@@ -12,19 +12,20 @@ class LibraryScreen extends StatefulWidget {
 
 class _LibraryScrenState extends State<LibraryScreen> {
   List<EncyclopediaRecord> _boxes = [];
+  String userLogged = "slaby_gracz";
 
   @override
   void initState() {
     super.initState();
-    _fetchData("");
+    _fetchData(userLogged);
   }
 
-  _fetchData(String searchText) async {
-    var url = 'http://10.0.2.2:5000//get/encyclopedia';
+  _fetchData(String userLogged) async {
+    var url = 'http://10.0.2.2:5000//get/library';
     final response = await http.post(
       Uri.parse(url),
       body: jsonEncode({
-        'search_text': searchText,
+        'user_logged': userLogged,
       }),
     );
     if (response.statusCode == 200) {
@@ -32,7 +33,7 @@ class _LibraryScrenState extends State<LibraryScreen> {
       setState(() {
         for (var i = 0; i < data["photo_id"].length; i++) {
           var record = EncyclopediaRecord(
-              "",
+              data["plant_name"][i],
               data["photo_id"][i],
               data["species_name"][i],
               data["species_description"][i],
@@ -41,6 +42,7 @@ class _LibraryScrenState extends State<LibraryScreen> {
               data["amount_of_water"][i],
               data["difficulty"][i]);
           _boxes.add(record);
+          print(_boxes[i].plantNickname);
         }
       });
     } else {

@@ -14,22 +14,21 @@ class _EncyclopediaScreenState extends State<EncyclopediaScreen> {
   @override
   void initState() {
     super.initState();
-    _fetchData();
+    _fetchData("");
   }
 
-  _fetchData() async {
+  _fetchData(String searchText) async {
     var url = 'http://10.0.2.2:5000//get/encyclopedia';
     final response = await http.post(
       Uri.parse(url),
       body: jsonEncode({
-        'search_text': "",
+        'search_text': searchText,
       }),
     );
     if (response.statusCode == 200) {
-      var data = jsonDecode(response.body);
+      Map data = jsonDecode(response.body);
       setState(() {
-        for (var i = 0; i < data.length; i++) {
-          print(data["photo_id"].runtimeType);
+        for (var i = 0; i < data["photo_id"].length; i++) {
           var record = EncyclopediaRecord(
               "",
               data["photo_id"][i],
@@ -40,6 +39,7 @@ class _EncyclopediaScreenState extends State<EncyclopediaScreen> {
               data["amount_of_water"][i],
               data["difficulty"][i]);
           _boxes.add(record);
+          print(_boxes[i].speciesName);
         }
       });
     } else {
@@ -51,7 +51,7 @@ class _EncyclopediaScreenState extends State<EncyclopediaScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Scrollable Boxes'),
+        title: Text('Scrollable Boxes encyclopedia'),
       ),
       body: ListView.builder(
         itemCount: _boxes.length,

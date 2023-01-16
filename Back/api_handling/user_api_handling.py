@@ -34,6 +34,8 @@ def api_add_plant_to_library():
 def api_show_library():
     data = json.loads(request.data)
 
+    print(data)
+
     user_logged = data['user_logged']
 
     json_answer = json.dumps(show_library(user_logged))
