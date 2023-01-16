@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:front/screens/library_screen.dart';
-import 'package:front/screens/registration_screen.dart';
+import 'package:front/screens/User/library_screen.dart';
+import 'package:front/screens/Shared/registration_screen.dart';
 import 'package:http/http.dart' as http;
 
-import 'encyclopedia.dart';
+import '../User/encyclopedia_screen.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -132,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
   void _navigateToUser() {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => ScrollableBoxesPageL()),
+      MaterialPageRoute(builder: (context) => LibraryScreen()),
     );
   }
 

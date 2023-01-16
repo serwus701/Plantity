@@ -1,35 +1,36 @@
-import 'package:flutter/material.dart';
-import 'package:front/utils/encyclopedia_record.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class ScrollableBoxesPage extends StatefulWidget {
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+import '../../utils/encyclopedia_record.dart';
+
+class LibraryScreen extends StatefulWidget {
   @override
-  _ScrollableBoxesPageState createState() => _ScrollableBoxesPageState();
+  _LibraryScrenState createState() => _LibraryScrenState();
 }
 
-class _ScrollableBoxesPageState extends State<ScrollableBoxesPage> {
+class _LibraryScrenState extends State<LibraryScreen> {
   List<EncyclopediaRecord> _boxes = [];
 
   @override
   void initState() {
     super.initState();
-    _fetchData();
+    _fetchData("");
   }
 
-  _fetchData() async {
+  _fetchData(String searchText) async {
     var url = 'http://10.0.2.2:5000//get/encyclopedia';
     final response = await http.post(
       Uri.parse(url),
       body: jsonEncode({
-        'search_text': "",
+        'search_text': searchText,
       }),
     );
     if (response.statusCode == 200) {
-      var data = jsonDecode(response.body);
+      Map data = jsonDecode(response.body);
       setState(() {
-        for (var i = 0; i < data.length; i++) {
-          print(data["photo_id"].runtimeType);
+        for (var i = 0; i < data["photo_id"].length; i++) {
           var record = EncyclopediaRecord(
               "",
               data["photo_id"][i],
@@ -51,29 +52,39 @@ class _ScrollableBoxesPageState extends State<ScrollableBoxesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Scrollable Boxes'),
+        title: Text('Scrollable Boxes/Library'),
+        backgroundColor: Colors.teal,
       ),
       body: ListView.builder(
-        itemCount: _boxes.length,
+        itemCount: 10,
         itemBuilder: (BuildContext context, int index) {
           return Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 50.0,
                   backgroundImage: AssetImage('assets/start_plant.jpg'),
                 ),
-                Text(
-                  'Plant species',
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.black54,
+                Column(children: const <Widget>[
+                  Text(
+                    'Plant name',
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      color: Colors.teal,
+                    ),
                   ),
-                ),
-              ]
-          );
+                  Text(
+                    'Plant species',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.black54,
+                    ),
+                  ),
+                ]),
+              ]);
         },
       ),
     );
   }
+
 }

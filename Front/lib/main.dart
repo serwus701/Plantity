@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:front/screens/login_screen.dart';
+import 'package:front/screens/Shared/login_screen.dart';
 
 void main() {
   runApp(GlobeApp());
