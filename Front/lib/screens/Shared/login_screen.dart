@@ -1,11 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:front/screens/User/encyclopedia_screen.dart';
 import 'package:front/screens/User/library_screen.dart';
 import 'package:front/screens/Shared/registration_screen.dart';
-import 'package:http/http.dart' as http;
+import 'package:front/api_requests/user_api_requests.dart';
 
-import '../User/encyclopedia_screen.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -48,7 +46,8 @@ class _LoginPageState extends State<LoginPage> {
                       fontWeight: FontWeight.bold,
                     )),
                 Card(
-                  margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+                  margin:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
                   child: TextFormField(
                     validator: (input) {
                       if (input!.isEmpty) {
@@ -60,16 +59,13 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecoration(
                         labelText: '   Login',
                         prefixIcon: Padding(
-                          padding: EdgeInsets.all(0.0),
-                          child: Icon(
-                            Icons.login,
-                            color: Colors.teal
-                          )
-                        )),
-                ),
+                            padding: EdgeInsets.all(0.0),
+                            child: Icon(Icons.login, color: Colors.teal))),
+                  ),
                 ),
                 Card(
-                  margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+                  margin:
+                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
                   child: TextFormField(
                     style: TextStyle(
                       decorationColor: Colors.teal,
@@ -84,18 +80,15 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: InputDecoration(
                         labelText: '   Password',
                         prefixIcon: Padding(
-                        padding: EdgeInsets.all(0.0),
-                      child: Icon(
-                          Icons.password,
-                          color: Colors.teal
-                      )
-                  )),
+                            padding: EdgeInsets.all(0.0),
+                            child: Icon(Icons.password, color: Colors.teal))),
                     obscureText: true,
                   ),
                 ),
                 ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll<Color>(Colors.black54),
+                    backgroundColor:
+                        MaterialStatePropertyAll<Color>(Colors.black54),
                   ),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
@@ -107,7 +100,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll<Color>(Colors.black54),
+                    backgroundColor:
+                        MaterialStatePropertyAll<Color>(Colors.black54),
                   ),
                   onPressed: () {
                     _navigateToRegistration();
@@ -151,36 +145,24 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _submit(String login, String password) async {
-    var url = 'http://10.0.2.2:5000//login';
-    var response = await http.post(
-      Uri.parse(url),
-      body: jsonEncode({'username': login, 'password': password}),
-    );
+    var login_result = await ApiRequests.loginSubmit(_login, _password);
 
-    //print(response.statusCode);
-
-    if (response.statusCode == 200) {
-      var data = json.decode(response.body);
-      print(data["approval"]);
-      switch (data["approval"]) {
-        case 1:
-          {
-            _navigateToUser();
-            break;
-          }
-        case 2:
-          {
-            _navigateToExpert();
-            break;
-          }
-        case 3:
-          {
-            _navigateToAdmin();
-            break;
-          }
-      }
-    } else {
-      throw Exception('Failed to load data');
+    switch (login_result) {
+      case 1:
+        {
+          _navigateToUser();
+          break;
+        }
+      case 2:
+        {
+          _navigateToExpert();
+          break;
+        }
+      case 3:
+        {
+          _navigateToAdmin();
+          break;
+        }
     }
   }
 }

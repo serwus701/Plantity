@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:front/api_requests/user_api_requests.dart';
 import 'package:front/utils/encyclopedia_record.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class EncyclopediaScreen extends StatefulWidget {
+  const EncyclopediaScreen({super.key});
+
   @override
   _EncyclopediaScreenState createState() => _EncyclopediaScreenState();
 }
@@ -14,37 +15,11 @@ class _EncyclopediaScreenState extends State<EncyclopediaScreen> {
   @override
   void initState() {
     super.initState();
-    _fetchData("");
+    callApiSync();
   }
 
-  _fetchData(String searchText) async {
-    var url = 'http://10.0.2.2:5000//get/encyclopedia';
-    final response = await http.post(
-      Uri.parse(url),
-      body: jsonEncode({
-        'search_text': searchText,
-      }),
-    );
-    if (response.statusCode == 200) {
-      Map data = jsonDecode(response.body);
-      setState(() {
-        for (var i = 0; i < data["photo_id"].length; i++) {
-          var record = EncyclopediaRecord(
-              "",
-              data["photo_id"][i],
-              data["species_name"][i],
-              data["species_description"][i],
-              data["how_often_to_water"][i],
-              data["amount_of_sun"][i],
-              data["amount_of_water"][i],
-              data["difficulty"][i]);
-          _boxes.add(record);
-          print(_boxes[i].speciesName);
-        }
-      });
-    } else {
-      throw Exception('Failed to load boxes');
-    }
+  Future<void> callApiSync() async {
+    _boxes = await ApiRequests.fetchEncyclopediaData("");
   }
 
   @override
@@ -58,7 +33,7 @@ class _EncyclopediaScreenState extends State<EncyclopediaScreen> {
         itemBuilder: (BuildContext context, int index) {
           return Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
+              children: const <Widget>[
                 CircleAvatar(
                   radius: 50.0,
                   backgroundImage: AssetImage('assets/start_plant.jpg'),
@@ -70,8 +45,7 @@ class _EncyclopediaScreenState extends State<EncyclopediaScreen> {
                     color: Colors.black54,
                   ),
                 ),
-              ]
-          );
+              ]);
         },
       ),
     );
