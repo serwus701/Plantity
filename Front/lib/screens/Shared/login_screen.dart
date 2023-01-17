@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:front/screens/User/encyclopedia_screen.dart';
 import 'package:front/screens/User/library_screen.dart';
 import 'package:front/screens/Shared/registration_screen.dart';
-import 'package:front/api_requests/user_api_requests.dart';
+import 'package:front/api_requests/shared_api_requests.dart';
 
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -145,9 +147,9 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _submit(String login, String password) async {
-    var login_result = await ApiRequests.loginSubmit(_login, _password);
+    var loginResult = await SharedApiRequests.loginSubmit(_login, _password);
 
-    switch (login_result) {
+    switch (loginResult) {
       case 1:
         {
           _navigateToUser();

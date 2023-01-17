@@ -19,7 +19,7 @@ class _EncyclopediaScreenState extends State<EncyclopediaScreen> {
   }
 
   Future<void> callApiSync() async {
-    _boxes = await ApiRequests.fetchEncyclopediaData("");
+    _boxes = await UserApiRequests.fetchEncyclopediaData("");
   }
 
   @override

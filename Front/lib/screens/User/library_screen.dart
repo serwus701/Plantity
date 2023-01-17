@@ -22,7 +22,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
   }
 
   Future<void> callApiSync() async {
-    _boxes = await ApiRequests.fetchLibraryData("slaby_gracz");
+    _boxes = await UserApiRequests.fetchLibraryData("slaby_gracz");
   }
 
   @override
