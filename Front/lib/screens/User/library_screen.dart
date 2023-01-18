@@ -24,7 +24,6 @@ class _LibraryScreenState extends State<LibraryScreen> {
 
   @override
   void initState() {
-    print(234);
     super.initState();
       callApiSync();
   }

@@ -5,7 +5,7 @@ import 'dart:convert';
 
 class UserApiRequests {
 
-  static void addPlantToLibrary(String plantNickname, String speciesName, String login) async{
+  static addPlantToLibrary(String plantNickname, String speciesName, String login) async{
     var url = 'http://10.0.2.2:5000//add/library';
     final response = await http.post(
       Uri.parse(url),
@@ -15,6 +15,7 @@ class UserApiRequests {
         'user_logged': login,
       }),
     );
+    return response;
 }
 
   static Future<List<EncyclopediaRecord>> fetchEncyclopediaData(String searchText) async {

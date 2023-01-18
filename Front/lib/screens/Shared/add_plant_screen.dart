@@ -2,8 +2,10 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:front/screens/User/library_record_screen.dart';
 import 'package:http/http.dart' as http;
 
+import '../../api_requests/user_api_requests.dart';
 import '../../utils/encyclopedia_record.dart';
 
 class AddPage extends StatefulWidget {
@@ -22,8 +24,11 @@ class _AddPageState extends State<AddPage> {
   _AddPageState(this.plant, this.login);
 
   void addPlant(EncyclopediaRecord plant, String login) async {
-    //UserApiRequests.addPlantToLibrary(plant.plantNickname, plant.speciesName, login);
+    UserApiRequests.addPlantToLibrary(plant.plantNickname, plant.speciesName, login);
     setState(() {});
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => LibraryRecord(plant: plant))
+    );
   }
 
   @override

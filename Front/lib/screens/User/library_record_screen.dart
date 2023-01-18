@@ -114,7 +114,7 @@ class _LibraryRecordState extends State<LibraryRecord> {
                 ),
                 Center(
                   child: Card(
-                    margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 40.0),
+                    margin: EdgeInsets.symmetric(vertical: 0.0, horizontal: 40.0),
                     child: SizedBox(
                       width: 300,
                       height: 150,
