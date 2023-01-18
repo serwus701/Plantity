@@ -12,6 +12,6 @@ class GlobeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: ThemeData(primarySwatch: Colors.blueGrey),
-        home: LoginPage());
+        home: const LoginPage());
   }
 }
