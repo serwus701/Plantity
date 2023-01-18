@@ -21,12 +21,11 @@ def api_search_encyclopedia():
 def api_add_plant_to_library():
     data = json.loads(request.data)
 
-    position = data['position']
+    species_name = data['species_name']
     plant_nickname = data['plant_nickname']
-    user_search = data['user_search']
     user_logged = data['user_logged']
 
-    answer = {'confirmation': add_plant_to_library(position, plant_nickname, user_search, user_logged)}
+    answer = {'confirmation': add_plant_to_library(plant_nickname, species_name, user_logged)}
     return jsonify(answer)
 
 
@@ -44,8 +43,8 @@ def api_show_library():
 def api_delete_from_library():
     data = json.loads(request.data)
 
-    position = data['position']
+    plant_nickname = data['plant_nickname']
     user_logged = data['user_logged']
 
-    answer = {'confirmation': delete_from_library(position, user_logged)}
+    answer = {'confirmation': delete_from_library(plant_nickname, user_logged)}
     return jsonify(answer)
