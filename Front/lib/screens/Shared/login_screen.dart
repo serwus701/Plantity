@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
               children: <Widget>[
                 CircleAvatar(
                   radius: 50.0,
-                  backgroundImage: AssetImage('assets/start_plant.jpg'),
+                  backgroundImage: AssetImage('assets/plants/start_plant.jpg'),
                 ),
                 Text(
                   'ᑭᒪᗩᑎTITY',
@@ -47,9 +47,15 @@ class _LoginPageState extends State<LoginPage> {
                       letterSpacing: 1.5,
                       fontWeight: FontWeight.bold,
                     )),
+                SizedBox(
+                    height: 20.0,
+                    width: 150.0,
+                    child: Divider(
+                      color:Colors.tealAccent,
+                    )
+                ),
                 Card(
-                  margin:
-                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+                  margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
                   child: TextFormField(
                     validator: (input) {
                       if (input!.isEmpty) {
@@ -62,12 +68,15 @@ class _LoginPageState extends State<LoginPage> {
                         labelText: '   Login',
                         prefixIcon: Padding(
                             padding: EdgeInsets.all(0.0),
-                            child: Icon(Icons.login, color: Colors.teal))),
+                            child: Icon(
+                                Icons.login,
+                                color: Colors.teal
+                            )
+                        )),
                   ),
                 ),
                 Card(
-                  margin:
-                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+                  margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
                   child: TextFormField(
                     style: TextStyle(
                       decorationColor: Colors.teal,
@@ -83,14 +92,17 @@ class _LoginPageState extends State<LoginPage> {
                         labelText: '   Password',
                         prefixIcon: Padding(
                             padding: EdgeInsets.all(0.0),
-                            child: Icon(Icons.password, color: Colors.teal))),
+                            child: Icon(
+                                Icons.password,
+                                color: Colors.teal
+                            )
+                        )),
                     obscureText: true,
                   ),
                 ),
                 ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll<Color>(Colors.black54),
+                    backgroundColor: MaterialStatePropertyAll<Color>(Colors.black54),
                   ),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
@@ -102,8 +114,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll<Color>(Colors.black54),
+                    backgroundColor: MaterialStatePropertyAll<Color>(Colors.black54),
                   ),
                   onPressed: () {
                     _navigateToRegistration();
@@ -125,24 +136,24 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void _navigateToUser() {
+  void _navigateToUser(String login) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => LibraryScreen()),
+      MaterialPageRoute(builder: (context) => LibraryScreen(login: login),
+    ));
+  }
+
+  void _navigateToExpert(String login) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LibraryScreen(login: login)),
     );
   }
 
-  void _navigateToExpert() {
+  void _navigateToAdmin(String login) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => EncyclopediaScreen()),
-    );
-  }
-
-  void _navigateToAdmin() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => RegistrationPage()),
+      MaterialPageRoute(builder: (context) => LibraryScreen(login: login)),
     );
   }
 
@@ -152,17 +163,17 @@ class _LoginPageState extends State<LoginPage> {
     switch (loginResult) {
       case 1:
         {
-          _navigateToUser();
+          _navigateToUser(_login);
           break;
         }
       case 2:
         {
-          _navigateToExpert();
+          _navigateToExpert(_login);
           break;
         }
       case 3:
         {
-          _navigateToAdmin();
+          _navigateToAdmin(_login);
           break;
         }
     }

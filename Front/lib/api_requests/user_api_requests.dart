@@ -5,6 +5,10 @@ import 'dart:convert';
 
 class UserApiRequests {
 
+  void addPlantToLibrary(String plantNickname, String speciesName, String login) async{
+
+}
+
   static Future<List<EncyclopediaRecord>> fetchEncyclopediaData(String searchText) async {
     List<EncyclopediaRecord> encyclopediaRecords = [];
 
