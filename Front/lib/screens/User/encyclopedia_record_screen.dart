@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front/screens/User/library_screen.dart';
 
 import '../../api_requests/user_api_requests.dart';
 import '../../utils/encyclopedia_record.dart';
@@ -24,8 +25,12 @@ class _EncyclopediaRecordScreenState extends State<EncyclopediaRecordScreen> {
   }
 
   void addPlant(EncyclopediaRecord plant) async {
-  //UserApiRequests.addPlantToLibrary(plant.plantNickname, plant.speciesName, login);
-  setState(() {});
+    UserApiRequests.addPlantToLibrary(plant.plantNickname, plant.speciesName, login);
+    //setState(() {});
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => LibraryScreen(login: login)),
+    );
   }
 
   @override
@@ -59,7 +64,7 @@ class _EncyclopediaRecordScreenState extends State<EncyclopediaRecordScreen> {
                 ),
                 Center(
                   child: Card(
-                    margin: EdgeInsets.symmetric(vertical: 30.0, horizontal: 40.0),
+                    margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 40.0),
                     child: SizedBox(
                       width: 300,
                       height: 150,
@@ -71,12 +76,21 @@ class _EncyclopediaRecordScreenState extends State<EncyclopediaRecordScreen> {
                 ),
                 Center(
                   child: Card(
-                    margin: EdgeInsets.symmetric(vertical: 30.0, horizontal: 40.0),
+                    margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 40.0),
                     child: SizedBox(
                       width: 300,
-                      height: 150,
+                      height: 250,
                       child: Center(
-                          child: Text(plant.speciesDescription)
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Text(plant.speciesDescription,
+                                style: TextStyle(
+                                  fontFamily: 'SourceSans3',
+                                  color: Colors.black,
+                                  fontSize: 12.0,
+                                  letterSpacing: 1.1,
+                                )),
+                          )
                       ),
                     ),
                   ),

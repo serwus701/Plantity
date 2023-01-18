@@ -31,7 +31,6 @@ class _EncyclopediaScreenState extends State<EncyclopediaScreen> {
 
   @override
   Widget build(BuildContext context) {
-    callApiSync();
     return Scaffold(
       appBar: AppBar(
         title: Text('Encyclopedia'),

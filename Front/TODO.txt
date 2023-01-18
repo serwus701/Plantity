@@ -1,4 +1,12 @@
-- checkboxy do library_record_screen
+///checkboxy do library_record_screen
+- checkboxy pamięć
 - gwiazdeczki (?) w encyclopedia_record_screen jako podstawowe info
+- addplant odpowiada
 - panel użytkownika?
-- wyśrodkować text library_record_screen i encyclopedia_record_screen
+- menu może?
+EXPERT:
+- wszystko
+
+ADMIN:
+
+///wyśrodkować text library_record_screen i encyclopedia_record_screen

@@ -34,9 +34,12 @@ class _AddPageState extends State<AddPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget> [
-            CircleAvatar(
-              radius: 50.0,
-              backgroundImage: AssetImage('assets/plants/${plant.photoId}.jpg'),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: CircleAvatar(
+                radius: 50.0,
+                backgroundImage: AssetImage('assets/plants/${plant.photoId}.jpg'),
+              ),
             ),
             Text('Add new ${plant.speciesName}',
                 style: TextStyle(
@@ -87,7 +90,7 @@ class _AddPageState extends State<AddPage> {
               onPressed: () {
                 addPlant(plant, login);
               },
-              child: Text('Register'),
+              child: Text('Add'),
             ),
           ],
         ),

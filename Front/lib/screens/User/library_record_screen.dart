@@ -12,14 +12,56 @@ class LibraryRecord extends StatefulWidget {
   _LibraryRecordState createState() => _LibraryRecordState(plant);
 }
 
+class LabeledCheckbox extends StatelessWidget {
+  const LabeledCheckbox({
+  super.key,
+  required this.label,
+  required this.padding,
+  required this.value,
+  required this.onChanged,
+  });
+
+  final String label;
+  final EdgeInsets padding;
+  final bool value;
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        onChanged(!value);
+      },
+      child: Padding(
+        padding: padding,
+        child: Row(
+          children: <Widget>[
+            Expanded(child: Text(label)),
+            Checkbox(
+              value: value,
+              activeColor: Colors.lime,
+              onChanged: (bool? newValue) {
+                onChanged(newValue!);
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _LibraryRecordState extends State<LibraryRecord> {
   EncyclopediaRecord plant;
   _LibraryRecordState(this.plant);
+  bool _isSelected = false;
 
   @override
   void initState() {
     super.initState();
   }
+
+
 
   @override
   Widget build(BuildContext context){
@@ -28,7 +70,7 @@ class _LibraryRecordState extends State<LibraryRecord> {
           title: Text(plant.plantNickname,
               style: TextStyle(
                 fontFamily: 'SourceSans3',
-                color: Colors.black,
+                color: Colors.white,
                 fontSize: 20.0,
                 letterSpacing: 1.1,
               )),
@@ -72,25 +114,28 @@ class _LibraryRecordState extends State<LibraryRecord> {
                 ),
                 Center(
                   child: Card(
-                    margin: EdgeInsets.symmetric(vertical: 30.0, horizontal: 40.0),
+                    margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 40.0),
                     child: SizedBox(
                       width: 300,
                       height: 150,
                       child: Center(
-                          child: Text('Tu bedzie panel z checkboxami',
-                              style: TextStyle(
-                                fontFamily: 'SourceSans3',
-                                color: Colors.black,
-                                fontSize: 11.0,
-                                letterSpacing: 1.1,
-                              ))
+                          child:  LabeledCheckbox(
+                            label: 'Watered',
+                            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                            value: _isSelected,
+                            onChanged: (bool newValue) {
+                              setState(() {
+                                _isSelected = newValue;
+                              });
+                            },
+                          )
                       ),
                     ),
                   ),
                 ),
                 Center(
                   child: Card(
-                    margin: EdgeInsets.symmetric(vertical: 30.0, horizontal: 40.0),
+                    margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 40.0),
                     child: SizedBox(
                       width: 300,
                       height: 250,
@@ -101,7 +146,7 @@ class _LibraryRecordState extends State<LibraryRecord> {
                                 style: TextStyle(
                                   fontFamily: 'SourceSans3',
                                   color: Colors.black,
-                                  fontSize: 11.0,
+                                  fontSize: 12.0,
                                   letterSpacing: 1.1,
                                 )),
                           ),)
