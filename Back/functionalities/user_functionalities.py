@@ -16,19 +16,16 @@ def search_for_plant_in_encyclopedia(user_search):
     return filtered_plants
 
 
-def add_plant_to_library(position_input, plant_nickname, user_search, user_logged):
+def add_plant_to_library(plant_nickname, species_name, user_logged):
     connection = engine.connect()
 
-    filtered_plants = search_for_plant_in_encyclopedia(user_search)
-
-    if 0 <= int(position_input) < len(filtered_plants["species_name"]):
-        try:
-            sql_request_add_plant_to_library(connection, filtered_plants["species_name"][int(position_input)],
-                                             plant_nickname, user_logged)
-            connection.close()
-            return True
-        except Exception as e:
-            print(e)
+    try:
+        sql_request_add_plant_to_library(connection, species_name,
+                                         plant_nickname, user_logged)
+        connection.close()
+        return True
+    except Exception as e:
+        print(e)
     connection.close()
     return False
 

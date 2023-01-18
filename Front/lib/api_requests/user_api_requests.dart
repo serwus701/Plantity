@@ -5,8 +5,16 @@ import 'dart:convert';
 
 class UserApiRequests {
 
-  void addPlantToLibrary(String plantNickname, String speciesName, String login) async{
-
+  static void addPlantToLibrary(String plantNickname, String speciesName, String login) async{
+    var url = 'http://10.0.2.2:5000//add/library';
+    final response = await http.post(
+      Uri.parse(url),
+      body: jsonEncode({
+        'plant_nickname': plantNickname,
+        'species_name': speciesName,
+        'user_logged': login,
+      }),
+    );
 }
 
   static Future<List<EncyclopediaRecord>> fetchEncyclopediaData(String searchText) async {
