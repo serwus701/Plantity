@@ -1,0 +1,4 @@
+- checkboxy do library_record_screen
+- gwiazdeczki (?) w encyclopedia_record_screen jako podstawowe info
+- panel użytkownika?
+- wyśrodkować text library_record_screen i encyclopedia_record_screen

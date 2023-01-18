@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../api_requests/user_api_requests.dart';
 import '../../utils/encyclopedia_record.dart';
+import '../Shared/add_plant_screen.dart';
 
 class EncyclopediaRecordScreen extends StatefulWidget {
   EncyclopediaRecord plant;
@@ -85,7 +86,9 @@ class _EncyclopediaRecordScreenState extends State<EncyclopediaRecordScreen> {
                     backgroundColor: MaterialStatePropertyAll<Color>(Colors.black54),
                   ),
                   onPressed: () {
-                    //addPlant - do wywołania
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => AddPage(plant: plant, login: login))
+                    );
                   },
                   child: Text('Add to your library'),
                 ),
