@@ -67,9 +67,9 @@ def sql_request_get_plants_from_library(connection, user_logged):
 
     return plants_details
 
-#TODO: delete request deletes all plants named like this (!!!)
+
 def sql_request_delete_from_library(connection, plant_nickname, user_logged):
     library_id = get_library_id(user_logged)
 
-    sql_query = """DELETE FROM plants.plants WHERE plant_name = %s"""
-    connection.execute(sql_query, plant_nickname)
+    sql_query = """DELETE FROM plants.plants WHERE plant_name = %s AND library_id = %s"""
+    connection.execute(sql_query, (plant_nickname, library_id))

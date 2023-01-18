@@ -10,14 +10,24 @@ url = 'mysql://admin:789password@127.0.0.1/plants'
 engine = create_engine(url)
 
 
-def edit_if_expert(name_to_search, chosen_position):
+def edit_if_expert(user_login):
     connection = engine.connect()
 
-    users = get_users(name_to_search)
+    users = get_users()
+
+    position = -1
+    for i in range(len(users["user_login"])):
+        if users["user_login"][i] == user_login:
+            position = i
+
+    print(position)
+
+    if position == -1:
+        return False
 
     try:
-        sql_request_edit_if_expert(connection, users["user_login"][int(chosen_position)],
-                                   str(users["is_expert"][int(chosen_position)])[5] == "0")
+        sql_request_edit_if_expert(connection, user_login,
+                                   str(users["is_expert"][position])[5] == "0")
         connection.close()
         return True
     except:
@@ -25,13 +35,11 @@ def edit_if_expert(name_to_search, chosen_position):
         return False
 
 
-def delete_client(name_to_search, chosen_position):
+def delete_client(user_login):
     connection = engine.connect()
 
-    users = get_users(name_to_search)
-
     try:
-        sql_request_delete_client(connection, users["user_login"][int(chosen_position)])
+        sql_request_delete_client(connection, user_login)
         connection.close()
         return True
     except:
@@ -44,13 +52,11 @@ def hide_record():
     print("123")
 
 
-def delete_record(position_input, search_text):
+def delete_record(species_name):
     connection = engine.connect()
 
-    filtered_plants = search_for_plant_in_encyclopedia(search_text)
-
     try:
-        sql_request_delete_record(connection, filtered_plants["species_name"][int(position_input)])
+        sql_request_delete_record(connection, species_name)
         connection.close()
         return True
     except:
@@ -58,7 +64,7 @@ def delete_record(position_input, search_text):
         return False
 
 
-def get_users(name):
+def get_users():
     connection = engine.connect()
 
     all_users = sql_request_get_users(connection)

@@ -23,10 +23,10 @@ def sql_request_edit_if_expert(connection, username, is_expert):
     connection.execute(sql_query, (is_expert, username))
 
 
-def sql_request_delete_record(connection, plant_name):
+def sql_request_delete_record(connection, species_name):
     sql_query = """DELETE FROM plants.encyclopedia WHERE species_name = %s"""
 
-    connection.execute(sql_query, plant_name)
+    connection.execute(sql_query, species_name)
 
 
 def sql_request_delete_client(connection, user_login):
