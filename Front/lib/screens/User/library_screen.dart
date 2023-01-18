@@ -39,7 +39,13 @@ class _LibraryScreenState extends State<LibraryScreen> {
     //callApiSync();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Library'),
+        title: Text('Library',
+          style: TextStyle(
+            fontFamily: 'SourceSans3',
+            fontSize: 20.0,
+            color: Colors.white,
+            letterSpacing: 1.1,
+          ),),
         backgroundColor: Colors.teal,
       ),
       body: ListView.builder(
@@ -61,8 +67,10 @@ class _LibraryScreenState extends State<LibraryScreen> {
                         Text(
                           _boxes[index].plantNickname, //_boxes[index][0]
                           style: TextStyle(
-                            fontSize: 30.0,
+                            fontFamily: 'SourceSans3',
+                            fontSize: 25.0,
                             color: Colors.teal,
+                            letterSpacing: 1.1,
                           ),
                         ),
                         Text(
