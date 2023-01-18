@@ -21,12 +21,11 @@ def api_search_encyclopedia():
 def api_add_plant_to_library():
     data = json.loads(request.data)
 
-    position = data['position']
     plant_nickname = data['plant_nickname']
-    user_search = data['user_search']
+    species_name = data['species_name']
     user_logged = data['user_logged']
 
-    answer = {'confirmation': add_plant_to_library(position, plant_nickname, user_search, user_logged)}
+    answer = {'confirmation': add_plant_to_library(plant_nickname, species_name, user_logged)}
     return jsonify(answer)
 
 
