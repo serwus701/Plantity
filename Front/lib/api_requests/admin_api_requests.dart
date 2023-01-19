@@ -29,4 +29,18 @@ class AdminApiRequests {
       throw Exception('Failed to load boxes');
     }
   }
+
+  static Future<bool> editIfExpert(String userLogin) async {
+
+    var url = 'http://10.0.2.2:5000//edit/user';
+    final response = await http.post(
+      Uri.parse(url),
+      body: jsonEncode({
+        'user_login': userLogin,
+      }),
+    );
+
+      bool answer = jsonDecode(response.body)['confirmation'];
+      return answer;
+  }
 }

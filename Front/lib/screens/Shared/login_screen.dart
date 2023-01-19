@@ -3,6 +3,8 @@ import 'package:front/screens/User/encyclopedia_screen.dart';
 import 'package:front/screens/User/library_screen.dart';
 import 'package:front/screens/Shared/registration_screen.dart';
 import 'package:front/api_requests/shared_api_requests.dart';
+import 'package:front/api_requests/shared_api_requests.dart';
+import 'package:front/api_requests/admin_api_requests.dart';//TESTING
 
 
 class LoginPage extends StatefulWidget {
@@ -130,6 +132,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _navigateToRegistration() {
+    AdminApiRequests.editIfExpert("kaleks");//TESTING
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => RegistrationPage()),
