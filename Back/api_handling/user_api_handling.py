@@ -21,13 +21,8 @@ def api_search_encyclopedia():
 def api_add_plant_to_library():
     data = json.loads(request.data)
 
-<<<<<<< HEAD
-    plant_nickname = data['plant_nickname']
-    species_name = data['species_name']
-=======
     species_name = data['species_name']
     plant_nickname = data['plant_nickname']
->>>>>>> 753847e4821b4436cb72a0863c7326060799dd6d
     user_logged = data['user_logged']
 
     answer = {'confirmation': add_plant_to_library(plant_nickname, species_name, user_logged)}
