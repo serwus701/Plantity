@@ -9,23 +9,23 @@ import 'package:http/http.dart' as http;
 import '../../api_requests/user_api_requests.dart';
 import '../../utils/encyclopedia_record.dart';
 
-class AddPage extends StatefulWidget {
+class DeletePage extends StatefulWidget {
   EncyclopediaRecord plant;
   String login;
-  AddPage({super.key, required this.plant, required this.login});
+  DeletePage({super.key, required this.plant, required this.login});
 
   @override
-  _AddPageState createState() => _AddPageState(plant, login);
+  _DeletePageState createState() => _DeletePageState(plant, login);
 }
 
-class _AddPageState extends State<AddPage> {
+class _DeletePageState extends State<DeletePage> {
   final _formKey = GlobalKey<FormState>();
   EncyclopediaRecord plant;
   String login;
-  _AddPageState(this.plant, this.login);
+  _DeletePageState(this.plant, this.login);
 
-  void addPlant(EncyclopediaRecord plant, String login) async {
-    UserApiRequests.addPlantToLibrary(plant.plantNickname, plant.speciesName, login);
+  void deletePlant(EncyclopediaRecord plant, String login) async {
+    await UserApiRequests.deletePlantFromLibrary(plant.plantNickname, plant.speciesName, login);
     setState(() {});
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => LibraryScreen(login: login))
@@ -47,7 +47,7 @@ class _AddPageState extends State<AddPage> {
                 backgroundImage: AssetImage('assets/plants/${plant.photoId}.jpg'),
               ),
             ),
-            Text('Add new ${plant.speciesName}',
+            Text('Deleting ${plant.plantNickname}',
                 style: TextStyle(
                   fontFamily: 'SourceSans3',
                   color: Colors.black,
@@ -71,15 +71,8 @@ class _AddPageState extends State<AddPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      TextFormField(
-                        validator: (input) {
-                          if (input!.isEmpty) {
-                            return 'Please enter your new plant name';
-                          }
-                          return null;
-                        },
-                        onChanged: (input) => plant.plantNickname = input, //nie wiem czy to dobrze, bo tworzymy chyba nowy obiekt
-                        decoration: InputDecoration(labelText: 'Plant name'),
+                      Text(
+                          'Are you sure you want to delete ${plant.plantNickname} from your library?',
                       ),
                       SizedBox(
                         height: 20.0,
@@ -94,9 +87,9 @@ class _AddPageState extends State<AddPage> {
                 backgroundColor: MaterialStatePropertyAll<Color>(Colors.black54),
               ),
               onPressed: () {
-                addPlant(plant, login);
+                deletePlant(plant, login);
               },
-              child: Text('Add'),
+              child: Text('Yes, delete'),
             ),
           ],
         ),
