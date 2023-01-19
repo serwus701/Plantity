@@ -132,7 +132,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _navigateToRegistration() {
-    AdminApiRequests.editIfExpert("kaleks");//TESTING
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => RegistrationPage()),
