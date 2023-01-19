@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:front/screens/Shared/delete_plant_screen.dart';
 import 'package:front/screens/User/encyclopedia_record_screen.dart';
 
 import '../../utils/encyclopedia_record.dart';
 
 class LibraryRecord extends StatefulWidget {
+  String login;
   EncyclopediaRecord plant;
-  LibraryRecord({super.key, required this.plant});
+  LibraryRecord({super.key, required this.plant, required this.login});
 
 
   @override
-  _LibraryRecordState createState() => _LibraryRecordState(plant);
+  _LibraryRecordState createState() => _LibraryRecordState(plant, login);
 }
 
 class LabeledCheckbox extends StatelessWidget {
@@ -53,7 +55,8 @@ class LabeledCheckbox extends StatelessWidget {
 
 class _LibraryRecordState extends State<LibraryRecord> {
   EncyclopediaRecord plant;
-  _LibraryRecordState(this.plant);
+  String login;
+  _LibraryRecordState(this.plant, this.login);
   bool _isSelected = false;
 
   @override
@@ -154,8 +157,17 @@ class _LibraryRecordState extends State<LibraryRecord> {
                     ),
                   ),
               ],
-            )
-        )
+            ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+              context, MaterialPageRoute(builder: (context) => DeletePage(login: login, plant: plant,))
+            );
+          },
+          backgroundColor: Colors.lime,
+          child: const Icon(Icons.delete),
+    ),
     );
   }
 }

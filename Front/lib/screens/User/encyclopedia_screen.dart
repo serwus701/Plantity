@@ -41,7 +41,7 @@ class _EncyclopediaScreenState extends State<EncyclopediaScreen> {
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
             child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -50,11 +50,17 @@ class _EncyclopediaScreenState extends State<EncyclopediaScreen> {
                       backgroundImage: AssetImage('assets/plants/${_boxes[index].photoId}.jpg'),
                     ),
                   ),
-                  Text(
-                    _boxes[index].speciesName,
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      color: Colors.black87,
+                  Expanded(
+                    flex: 1,
+                    child: Text(
+                      _boxes[index].speciesName,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: 'SourceSans3',
+                        fontSize: 25.0,
+                        color: Colors.black87,
+                        letterSpacing: 1.1,
+                      ),
                     ),
                   ),
                 ]

@@ -52,40 +52,46 @@ class _LibraryScreenState extends State<LibraryScreen> {
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
             child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //mainAxisAlignment: MainAxisAlignment.,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                     child: CircleAvatar(
                       radius: 50.0,
                       backgroundImage: AssetImage('assets/plants/${_boxes[index].photoId}.jpg'), //jak to zrobic?
                     ),
                   ),
-                  Column(
-                      children: <Widget> [
-                        Text(
-                          _boxes[index].plantNickname, //_boxes[index][0]
-                          style: TextStyle(
-                            fontFamily: 'SourceSans3',
-                            fontSize: 25.0,
-                            color: Colors.teal,
-                            letterSpacing: 1.1,
+                  Expanded(
+                    flex: 1,
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget> [
+                          Text(
+                            _boxes[index].plantNickname,
+                            //textAlign: TextAlign.center,//_boxes[index][0]
+                            style: TextStyle(
+                              fontFamily: 'SourceSans3',
+                              fontSize: 25.0,
+                              color: Colors.teal,
+                              letterSpacing: 1.1,
+                            ),
                           ),
-                        ),
-                        Text(
-                          _boxes[index].speciesName, //_boxes[index][2]
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            color: Colors.black54,
+                          Text(
+                            _boxes[index].speciesName, //_boxes[index][2]
+                            style: TextStyle(
+                              fontFamily: 'SourceSans3',
+                              fontSize: 15.0,
+                              color: Colors.black54,
+                            ),
                           ),
-                        ),
-                      ]
+                        ]
+                    ),
                   ),
                 ]
             ),
             onTap: (){
               Navigator.push(
-                context, MaterialPageRoute(builder: (context) => LibraryRecord(plant: _boxes[index]))
+                context, MaterialPageRoute(builder: (context) => LibraryRecord(plant: _boxes[index], login: login))
               );
             },
           );

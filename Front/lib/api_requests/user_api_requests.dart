@@ -18,6 +18,22 @@ class UserApiRequests {
     return response;
 }
 
+  static deletePlantFromLibrary(String plantNickname, String speciesName, String login) async{
+    var url = 'http://10.0.2.2:5000//delete/library';
+    final response = await http.post(
+      Uri.parse(url),
+      body: jsonEncode({
+        'plant_nickname': plantNickname,
+        'species_name': speciesName,
+        'user_logged': login,
+      }),
+    );
+    print(123);
+    print(response.body[]);
+    print(456);
+    return response;
+  }
+
   static Future<List<EncyclopediaRecord>> fetchEncyclopediaData(String searchText) async {
     List<EncyclopediaRecord> encyclopediaRecords = [];
 

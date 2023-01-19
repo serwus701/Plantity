@@ -1,12 +1,18 @@
 ///checkboxy do library_record_screen
-- checkboxy pamięć
+- checkboxy pamięć czy przy zamknietej apce dziala
 - gwiazdeczki (?) w encyclopedia_record_screen jako podstawowe info
-- addplant odpowiada
+///addplant odpowiada
 - panel użytkownika?
 - menu może?
+- usuwanie roslin (jest juz zapytanie do api)
+- library screen wycentrować
+
+
 EXPERT:
 - wszystko
 
+
 ADMIN:
+- don't even get me started
 
 ///wyśrodkować text library_record_screen i encyclopedia_record_screen
