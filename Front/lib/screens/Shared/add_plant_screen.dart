@@ -25,7 +25,7 @@ class _AddPageState extends State<AddPage> {
   _AddPageState(this.plant, this.login);
 
   void addPlant(EncyclopediaRecord plant, String login) async {
-    UserApiRequests.addPlantToLibrary(plant.plantNickname, plant.speciesName, login);
+    await UserApiRequests.addPlantToLibrary(plant.plantNickname, plant.speciesName, login);
     setState(() {});
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => LibraryScreen(login: login))

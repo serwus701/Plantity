@@ -5,7 +5,7 @@ import 'dart:convert';
 
 class UserApiRequests {
 
-  static addPlantToLibrary(String plantNickname, String speciesName, String login) async{
+  static Future<bool> addPlantToLibrary(String plantNickname, String speciesName, String login) async{
     var url = 'http://10.0.2.2:5000//add/library';
     final response = await http.post(
       Uri.parse(url),
@@ -15,12 +15,14 @@ class UserApiRequests {
         'user_logged': login,
       }),
     );
-    return response;
+
+    bool answer = jsonDecode(response.body)['confirmation'];
+    return answer;
 }
 
-  static deletePlantFromLibrary(String plantNickname, String speciesName, String login) async{
+  static Future<bool> deletePlantFromLibrary(String plantNickname, String speciesName, String login) async{
     var url = 'http://10.0.2.2:5000//delete/library';
-    final response = await http.post(
+    var response = await http.post(
       Uri.parse(url),
       body: jsonEncode({
         'plant_nickname': plantNickname,
@@ -28,7 +30,9 @@ class UserApiRequests {
         'user_logged': login,
       }),
     );
-    return response;
+
+    bool answer = jsonDecode(response.body)['confirmation'];
+    return answer;
   }
 
   static Future<List<EncyclopediaRecord>> fetchEncyclopediaData(String searchText) async {

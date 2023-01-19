@@ -18,9 +18,12 @@ def get_dataframe_size(df):
 
 
 def get_library_id(user_login):
-    sql_query = """SELECT user_id FROM plants.users WHERE user_login = %s"""
-    df = pd.read_sql_query(sql_query, connection, params=[user_login])
-    user_id = df.iloc[0]["user_id"]
+    try:
+        sql_query = """SELECT user_id FROM plants.users WHERE user_login = %s"""
+        df = pd.read_sql_query(sql_query, connection, params=[user_login])
+        user_id = df.iloc[0]["user_id"]
+    except Exception as e:
+        print(e)
 
     sql_query = """SELECT library_id FROM plants.libraries WHERE user_id = %s"""
     df = pd.read_sql_query(sql_query, connection, params=[user_id])
