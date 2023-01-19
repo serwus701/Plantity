@@ -28,9 +28,6 @@ class UserApiRequests {
         'user_logged': login,
       }),
     );
-    print(123);
-    print(response.body[]);
-    print(456);
     return response;
   }
 
