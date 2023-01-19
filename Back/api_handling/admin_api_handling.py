@@ -11,7 +11,7 @@ def api_get_users():
 
     search_text = data['search_text']
 
-    json_answer = json.dumps(get_users(search_text))
+    json_answer = json.dumps(get_users())
 
     return json_answer
 
@@ -20,10 +20,9 @@ def api_get_users():
 def api_edit_if_expert():
     data = json.loads(request.data)
 
-    name_to_search = data['name_to_search']
-    chosen_position = data['chosen_position']
+    user_login = data['user_login']
 
-    answer = {'confirmation': edit_if_expert(name_to_search, chosen_position)}
+    answer = {'confirmation': edit_if_expert(user_login)}
 
     return jsonify(answer)
 
@@ -32,11 +31,9 @@ def api_edit_if_expert():
 def api_delete_client():
     data = json.loads(request.data)
 
-    name_to_search = data['name_to_search']
-    chosen_position = data['chosen_position']
+    user_login = data['user_login']
 
-    delete_client(name_to_search, chosen_position)
-    answer = {'confirmation': delete_client(name_to_search, chosen_position)}
+    answer = {'confirmation': delete_client(user_login)}
 
     return jsonify(answer)
 
@@ -45,9 +42,8 @@ def api_delete_client():
 def api_delete_record():
     data = json.loads(request.data)
 
-    position_input = data['position_input']
-    search_text = data['search_text']
+    species_name = data['species_name']
 
-    answer = {'confirmation': delete_record(position_input, search_text)}
+    answer = {'confirmation': delete_record(species_name)}
 
     return jsonify(answer)

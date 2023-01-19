@@ -28,10 +28,9 @@ def api_add_encyclopedia():
 def api_edit_encyclopedia():
     data = json.loads(request.data)
 
-    position = data['position']
+    species_name = data['species_name']
     description = data['plant_description']
-    search_input = data['search_input']
 
-    json_answer = json.dumps(edit_plant_description(position, description, search_input))
+    json_answer = json.dumps(edit_plant_description(species_name, description))
 
     return json_answer

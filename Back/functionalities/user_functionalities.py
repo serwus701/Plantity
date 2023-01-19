@@ -40,14 +40,11 @@ def show_library(user_logged):
     return plants_from_library
 
 
-def delete_from_library(plant_numer_to_delete, user_logged):
+def delete_from_library(plant_nickname, user_logged):
     connection = engine.connect()
 
-    plants_from_library = sql_request_get_plants_from_library(connection, user_logged)
-
     try:
-        plant_nickname = plants_from_library["plant_name"][int(plant_numer_to_delete)]
-        sql_request_delete_from_library(connection, plant_nickname)
+        sql_request_delete_from_library(connection, plant_nickname, user_logged)
         connection.close()
         return True
     except:
