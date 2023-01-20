@@ -30,18 +30,18 @@ class _LoginPageState extends State<LoginPage> {
               //mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 50.0,
                   backgroundImage: AssetImage('assets/plants/start_plant.jpg'),
                 ),
-                Text(
+                const Text(
                   'ᑭᒪᗩᑎTITY',
                   style: TextStyle(
                     fontSize: 30.0,
                     color: Colors.white,
                   ),
                 ),
-                Text('TAKE CARE OF PLANTS EASILY',
+                const Text('TAKE CARE OF PLANTS EASILY',
                     style: TextStyle(
                       fontFamily: 'SourceSans3',
                       color: Colors.black,
@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                       letterSpacing: 1.5,
                       fontWeight: FontWeight.bold,
                     )),
-                SizedBox(
+                const SizedBox(
                     height: 20.0,
                     width: 150.0,
                     child: Divider(
@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                     )
                 ),
                 Card(
-                  margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+                  margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
                   child: TextFormField(
                     validator: (input) {
                       if (input!.isEmpty) {
@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                       return null;
                     },
                     onSaved: (input) => _login = input!,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         labelText: '   Login',
                         prefixIcon: Padding(
                             padding: EdgeInsets.all(0.0),
@@ -78,9 +78,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 Card(
-                  margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+                  margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
                   child: TextFormField(
-                    style: TextStyle(
+                    style: const TextStyle(
                       decorationColor: Colors.teal,
                     ),
                     validator: (input) {
@@ -90,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                       return null;
                     },
                     onSaved: (input) => _password = input!,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         labelText: '   Password',
                         prefixIcon: Padding(
                             padding: EdgeInsets.all(0.0),
@@ -103,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 ElevatedButton(
-                  style: ButtonStyle(
+                  style: const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll<Color>(Colors.black54),
                   ),
                   onPressed: () {
@@ -112,16 +112,16 @@ class _LoginPageState extends State<LoginPage> {
                       _submit(_login, _password);
                     }
                   },
-                  child: Text('Login'),
+                  child: const Text('Login'),
                 ),
                 ElevatedButton(
-                  style: ButtonStyle(
+                  style: const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll<Color>(Colors.black54),
                   ),
                   onPressed: () {
                     _navigateToRegistration();
                   },
-                  child: Text('Don\'t have an account? Register'),
+                  child: const Text('Don\'t have an account? Register'),
                 ),
               ],
             ),

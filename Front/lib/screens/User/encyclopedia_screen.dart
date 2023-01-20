@@ -33,7 +33,7 @@ class _EncyclopediaScreenState extends State<EncyclopediaScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Encyclopedia'),
+        title: const Text('Encyclopedia'),
         backgroundColor: Colors.teal,
       ),
       body: ListView.builder(
@@ -55,7 +55,7 @@ class _EncyclopediaScreenState extends State<EncyclopediaScreen> {
                     child: Text(
                       _boxes[index].speciesName,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: 'SourceSans3',
                         fontSize: 25.0,
                         color: Colors.black87,

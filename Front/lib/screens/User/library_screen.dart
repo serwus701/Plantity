@@ -38,7 +38,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
     //callApiSync();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Library',
+        title: const Text('Library',
           style: TextStyle(
             fontFamily: 'SourceSans3',
             fontSize: 20.0,
@@ -69,7 +69,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                           Text(
                             _boxes[index].plantNickname,
                             //textAlign: TextAlign.center,//_boxes[index][0]
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontFamily: 'SourceSans3',
                               fontSize: 25.0,
                               color: Colors.teal,
@@ -78,7 +78,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                           ),
                           Text(
                             _boxes[index].speciesName, //_boxes[index][2]
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontFamily: 'SourceSans3',
                               fontSize: 15.0,
                               color: Colors.black54,

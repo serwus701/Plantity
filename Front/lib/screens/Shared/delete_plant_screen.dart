@@ -48,14 +48,14 @@ class _DeletePageState extends State<DeletePage> {
               ),
             ),
             Text('Deleting ${plant.plantNickname}',
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: 'SourceSans3',
                   color: Colors.black,
                   fontSize: 25.0,
                   letterSpacing: 1.5,
                   fontWeight: FontWeight.bold,
                 )),
-            SizedBox(
+            const SizedBox(
                 height: 20.0,
                 width: 150.0,
                 child: Divider(
@@ -74,7 +74,7 @@ class _DeletePageState extends State<DeletePage> {
                       Text(
                           'Are you sure you want to delete ${plant.plantNickname} from your library?',
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.0,
                       ),
                     ],
@@ -83,13 +83,13 @@ class _DeletePageState extends State<DeletePage> {
               ),
             ),
             ElevatedButton(
-              style: ButtonStyle(
+              style: const ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll<Color>(Colors.black54),
               ),
               onPressed: () {
                 deletePlant(plant, login);
               },
-              child: Text('Yes, delete'),
+              child: const Text('Yes, delete'),
             ),
           ],
         ),

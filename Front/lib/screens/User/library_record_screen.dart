@@ -71,7 +71,7 @@ class _LibraryRecordState extends State<LibraryRecord> {
     return Scaffold(
         appBar: AppBar(
           title: Text(plant.plantNickname,
-              style: TextStyle(
+              style: const TextStyle(
                 fontFamily: 'SourceSans3',
                 color: Colors.white,
                 fontSize: 20.0,
@@ -82,7 +82,7 @@ class _LibraryRecordState extends State<LibraryRecord> {
         body: SafeArea(
             child: Column(
               children: <Widget>[
-                SizedBox(
+                const SizedBox(
                   height: 20.0,
                 ),
                 Row(
@@ -92,7 +92,7 @@ class _LibraryRecordState extends State<LibraryRecord> {
                         children: [
                           Text(
                             plant.plantNickname,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontFamily: 'SourceSans3',
                               fontSize: 30.0,
                               color: Colors.teal,
@@ -101,7 +101,7 @@ class _LibraryRecordState extends State<LibraryRecord> {
                           ),
                           Text(
                             plant.speciesName,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontFamily: 'SourceSans3',
                               fontSize: 20.0,
                               color: Colors.black54,
@@ -117,7 +117,7 @@ class _LibraryRecordState extends State<LibraryRecord> {
                 ),
                 Center(
                   child: Card(
-                    margin: EdgeInsets.symmetric(vertical: 0.0, horizontal: 40.0),
+                    margin: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 40.0),
                     child: SizedBox(
                       width: 300,
                       height: 150,
@@ -138,7 +138,7 @@ class _LibraryRecordState extends State<LibraryRecord> {
                 ),
                 Center(
                   child: Card(
-                    margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 40.0),
+                    margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 40.0),
                     child: SizedBox(
                       width: 300,
                       height: 250,
@@ -146,7 +146,7 @@ class _LibraryRecordState extends State<LibraryRecord> {
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Text(plant.speciesDescription,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontFamily: 'SourceSans3',
                                   color: Colors.black,
                                   fontSize: 12.0,
