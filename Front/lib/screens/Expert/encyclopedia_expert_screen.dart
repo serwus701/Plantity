@@ -4,21 +4,20 @@ import 'package:front/screens/Shared/library_screen.dart';
 import '../../api_requests/user_api_requests.dart';
 import '../../utils/encyclopedia_record.dart';
 import '../Shared/add_plant_screen.dart';
-import 'package:front/globals.dart' as globals;
 
-class EncyclopediaRecordScreen extends StatefulWidget {
+class EncyclopediaExpertRecordScreen extends StatefulWidget {
   EncyclopediaRecord plant;
   String login;
-  EncyclopediaRecordScreen({super.key, required this.plant, required this.login});
+  EncyclopediaExpertRecordScreen({super.key, required this.plant, required this.login});
 
   @override
-  _EncyclopediaRecordScreenState createState() => _EncyclopediaRecordScreenState(plant, login);
+  _EncyclopediaExpertRecordScreenState createState() => _EncyclopediaExpertRecordScreenState(plant, login);
 }
 
-class _EncyclopediaRecordScreenState extends State<EncyclopediaRecordScreen> {
+class _EncyclopediaExpertRecordScreenState extends State<EncyclopediaExpertRecordScreen> {
   EncyclopediaRecord plant;
   String login;
-  _EncyclopediaRecordScreenState(this.plant, this.login);
+  _EncyclopediaExpertRecordScreenState(this.plant, this.login);
 
   @override
   void initState() {
@@ -107,7 +106,17 @@ class _EncyclopediaRecordScreenState extends State<EncyclopediaRecordScreen> {
                   },
                   child: Text('Add to your library'),
                 ),
-
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll<Color>(Colors.black54),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => AddPage(plant: plant, login: login))
+                    );
+                  },
+                  child: Text('Modify'),
+                ),
               ],
             )
         )

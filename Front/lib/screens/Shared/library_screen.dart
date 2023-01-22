@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:front/api_requests/user_api_requests.dart';
 import 'package:front/screens/User/encyclopedia_screen.dart';
-import 'package:front/screens/User/library_record_screen.dart';
+import 'package:front/screens/Shared/library_record_screen.dart';
 import 'package:front/utils/encyclopedia_record.dart';
 
 

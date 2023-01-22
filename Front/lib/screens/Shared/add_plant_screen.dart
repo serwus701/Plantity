@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:front/screens/User/library_record_screen.dart';
-import 'package:front/screens/User/library_screen.dart';
+import 'package:front/screens/Shared/library_record_screen.dart';
+import 'package:front/screens/Shared/library_screen.dart';
 import 'package:http/http.dart' as http;
 
 import '../../api_requests/user_api_requests.dart';

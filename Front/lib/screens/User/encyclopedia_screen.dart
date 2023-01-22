@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:front/api_requests/user_api_requests.dart';
 import 'package:front/screens/User/encyclopedia_record_screen.dart';
 import 'package:front/utils/encyclopedia_record.dart';
+import 'package:front/globals.dart' as globals;
+import '../../api_requests/shared_api_requests.dart';
+import '../Expert/encyclopedia_expert_screen.dart';
 
 
 class EncyclopediaScreen extends StatefulWidget {
@@ -66,9 +69,34 @@ class _EncyclopediaScreenState extends State<EncyclopediaScreen> {
                 ]
             ),
               onTap: (){
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => EncyclopediaRecordScreen(plant: _boxes[index], login: login,))
-                );
+                switch (globals.user_type) {
+                  case 'user':
+                    {
+                      globals.user_type = 'user';
+                      Navigator.push(
+                          context, MaterialPageRoute(builder: (context) => EncyclopediaRecordScreen(plant: _boxes[index], login: login,))
+                      );
+                      break;
+                    }
+                  case 'expert':
+                    {
+                      globals.user_type = 'expert';
+                      globals.user_type = 'user';
+                      Navigator.push(
+                          context, MaterialPageRoute(builder: (context) => EncyclopediaExpertRecordScreen(plant: _boxes[index], login: login,))
+                      );
+                      break;
+                    }
+                  case 'admin':
+                    {
+                      globals.user_type = 'admin';
+                      globals.user_type = 'user';
+                      Navigator.push(
+                          context, MaterialPageRoute(builder: (context) => EncyclopediaRecordScreen(plant: _boxes[index], login: login,))
+                      );
+                      break;
+                    }
+                }
               }
           );
         },
