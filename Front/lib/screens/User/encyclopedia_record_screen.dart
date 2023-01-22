@@ -44,7 +44,7 @@ class _EncyclopediaRecordScreenState extends State<EncyclopediaRecordScreen> {
         body: SafeArea(
             child: Column(
               children: <Widget>[
-                SizedBox(
+                const SizedBox(
                   height: 20.0,
                 ),
                 Row(
@@ -52,7 +52,7 @@ class _EncyclopediaRecordScreenState extends State<EncyclopediaRecordScreen> {
                     children: <Widget>[
                       Text(
                         plant.speciesName,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 30.0,
                           color: Colors.teal,
                         ),
@@ -63,7 +63,7 @@ class _EncyclopediaRecordScreenState extends State<EncyclopediaRecordScreen> {
                       ),
                     ]
                 ),
-                Center(
+                const Center(
                   child: Card(
                     margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 40.0),
                     child: SizedBox(
@@ -77,7 +77,7 @@ class _EncyclopediaRecordScreenState extends State<EncyclopediaRecordScreen> {
                 ),
                 Center(
                   child: Card(
-                    margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 40.0),
+                    margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 40.0),
                     child: SizedBox(
                       width: 300,
                       height: 250,
@@ -85,7 +85,7 @@ class _EncyclopediaRecordScreenState extends State<EncyclopediaRecordScreen> {
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Text(plant.speciesDescription,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontFamily: 'SourceSans3',
                                   color: Colors.black,
                                   fontSize: 12.0,
@@ -97,7 +97,7 @@ class _EncyclopediaRecordScreenState extends State<EncyclopediaRecordScreen> {
                   ),
                 ),
                 ElevatedButton(
-                  style: ButtonStyle(
+                  style: const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll<Color>(Colors.black54),
                   ),
                   onPressed: () {
@@ -105,7 +105,7 @@ class _EncyclopediaRecordScreenState extends State<EncyclopediaRecordScreen> {
                         context, MaterialPageRoute(builder: (context) => AddPage(plant: plant, login: login))
                     );
                   },
-                  child: Text('Add to your library'),
+                  child: const Text('Add to your library'),
                 ),
 
               ],

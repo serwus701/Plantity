@@ -21,7 +21,7 @@ class _RegisterPageState extends State<RegistrationPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget> [
-            Text('REGISTER',
+            const Text('REGISTER',
                 style: TextStyle(
                   fontFamily: 'SourceSans3',
                   color: Colors.black,
@@ -29,7 +29,7 @@ class _RegisterPageState extends State<RegistrationPage> {
                   letterSpacing: 1.5,
                   fontWeight: FontWeight.bold,
                 )),
-            SizedBox(
+            const SizedBox(
                 height: 20.0,
                 width: 150.0,
                 child: Divider(
@@ -53,7 +53,7 @@ class _RegisterPageState extends State<RegistrationPage> {
                           return null;
                         },
                         onChanged: (input) => _firstname = input,
-                        decoration: InputDecoration(labelText: 'Firstname'),
+                        decoration: const InputDecoration(labelText: 'Firstname'),
                       ),
                       TextFormField(
                         validator: (input) {
@@ -63,7 +63,7 @@ class _RegisterPageState extends State<RegistrationPage> {
                           return null;
                         },
                         onChanged: (input) => _lastname = input,
-                        decoration: InputDecoration(labelText: 'Lastname'),
+                        decoration: const InputDecoration(labelText: 'Lastname'),
                       ),
                       TextFormField(
                         validator: (input) {
@@ -73,7 +73,7 @@ class _RegisterPageState extends State<RegistrationPage> {
                           return null;
                         },
                         onChanged: (input) => _login = input,
-                        decoration: InputDecoration(labelText: 'Login'),
+                        decoration: const InputDecoration(labelText: 'Login'),
                       ),
                       TextFormField(
                         validator: (input) {
@@ -83,10 +83,10 @@ class _RegisterPageState extends State<RegistrationPage> {
                           return null;
                         },
                         onChanged: (input) => _password = input,
-                        decoration: InputDecoration(labelText: 'Password'),
+                        decoration: const InputDecoration(labelText: 'Password'),
                         obscureText: true,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.0,
                       ),
                     ],
@@ -95,13 +95,13 @@ class _RegisterPageState extends State<RegistrationPage> {
               ),
             ),
             ElevatedButton(
-              style: ButtonStyle(
+              style: const ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll<Color>(Colors.black54),
               ),
               onPressed: () {
                 _submit(_login, _password, _firstname, _lastname);
               },
-              child: Text('Register'),
+              child: const Text('Register'),
             ),
           ],
         ),
