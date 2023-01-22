@@ -11,7 +11,7 @@
 
 EXPERT:
 - wszystko (a dokładniej):
-- encyclopedia record z opcją modyfikacji (tu może być trochę roboty)
+- encyclopedia record z opcją modyfikacji (tu może być trochę roboty) ///
 
 
 ADMIN:
