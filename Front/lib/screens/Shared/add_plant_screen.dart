@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:front/screens/User/library_record_screen.dart';
-import 'package:front/screens/User/library_screen.dart';
+import 'package:front/screens/Shared/library_record_screen.dart';
+import 'package:front/screens/Shared/library_screen.dart';
 import 'package:http/http.dart' as http;
 
 import '../../api_requests/user_api_requests.dart';
@@ -48,14 +48,14 @@ class _AddPageState extends State<AddPage> {
               ),
             ),
             Text('Add new ${plant.speciesName}',
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: 'SourceSans3',
                   color: Colors.black,
                   fontSize: 25.0,
                   letterSpacing: 1.5,
                   fontWeight: FontWeight.bold,
                 )),
-            SizedBox(
+            const SizedBox(
                 height: 20.0,
                 width: 150.0,
                 child: Divider(
@@ -79,9 +79,9 @@ class _AddPageState extends State<AddPage> {
                           return null;
                         },
                         onChanged: (input) => plant.plantNickname = input, //nie wiem czy to dobrze, bo tworzymy chyba nowy obiekt
-                        decoration: InputDecoration(labelText: 'Plant name'),
+                        decoration: const InputDecoration(labelText: 'Plant name'),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.0,
                       ),
                     ],
@@ -90,13 +90,13 @@ class _AddPageState extends State<AddPage> {
               ),
             ),
             ElevatedButton(
-              style: ButtonStyle(
+              style: const ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll<Color>(Colors.black54),
               ),
               onPressed: () {
                 addPlant(plant, login);
               },
-              child: Text('Add'),
+              child: const Text('Add'),
             ),
           ],
         ),

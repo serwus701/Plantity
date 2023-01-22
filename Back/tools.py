@@ -30,3 +30,19 @@ def get_library_id(user_login):
     library_id = df.iloc[0]["library_id"]
 
     return library_id
+
+
+def is_user_or_admin(user_login):
+    try:
+        sql_query = """SELECT * FROM plants.users WHERE user_login = %s"""
+        df = pd.read_sql_query(sql_query, connection, params=[user_login])
+        user_id = df.iloc[0]["user_id"]
+        return 1
+    except:
+        try:
+            sql_query = """SELECT * FROM plants.admins WHERE admin_login = %s"""
+            df = pd.read_sql_query(sql_query, connection, params=[user_login])
+            user_id = df.iloc[0]["admin_id"]
+            return 2
+        except:
+            return 0

@@ -4,15 +4,17 @@
 ///addplant odpowiada
 - panel użytkownika?
 - menu może?
-- usuwanie roslin (jest juz zapytanie do api)
-- library screen wycentrować
+///usuwanie roslin (jest juz zapytanie do api)
+///library screen wycentrować
+- zmiana hasła użytkownik
 
 
 EXPERT:
-- wszystko
+- wszystko (a dokładniej):
+- encyclopedia record z opcją modyfikacji (tu może być trochę roboty) ///
 
 
 ADMIN:
-- don't even get me started
-
+- don't even get me started (a dokładniej):
+- encyclopedia record z opcją usunięcia (easy bo na podstawie recordu użytkownika z opcją usunięcia jak w library record)
 ///wyśrodkować text library_record_screen i encyclopedia_record_screen

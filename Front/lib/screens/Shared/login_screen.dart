@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:front/screens/User/encyclopedia_screen.dart';
-import 'package:front/screens/User/library_screen.dart';
+import 'package:front/screens/Shared/library_screen.dart';
 import 'package:front/screens/Shared/registration_screen.dart';
 import 'package:front/api_requests/shared_api_requests.dart';
+import 'package:front/globals.dart' as globals;
 
 
 class LoginPage extends StatefulWidget {
@@ -163,16 +164,19 @@ class _LoginPageState extends State<LoginPage> {
     switch (loginResult) {
       case 1:
         {
+          globals.user_type = 'user';
           _navigateToUser(_login);
           break;
         }
       case 2:
         {
+          globals.user_type = 'expert';
           _navigateToExpert(_login);
           break;
         }
       case 3:
         {
+          globals.user_type = 'admin';
           _navigateToAdmin(_login);
           break;
         }

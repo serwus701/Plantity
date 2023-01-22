@@ -4,21 +4,20 @@ import 'package:front/screens/Shared/library_screen.dart';
 import '../../api_requests/user_api_requests.dart';
 import '../../utils/encyclopedia_record.dart';
 import '../Shared/add_plant_screen.dart';
-import 'package:front/globals.dart' as globals;
 
-class EncyclopediaRecordScreen extends StatefulWidget {
+class EncyclopediaExpertRecordScreen extends StatefulWidget {
   EncyclopediaRecord plant;
   String login;
-  EncyclopediaRecordScreen({super.key, required this.plant, required this.login});
+  EncyclopediaExpertRecordScreen({super.key, required this.plant, required this.login});
 
   @override
-  _EncyclopediaRecordScreenState createState() => _EncyclopediaRecordScreenState(plant, login);
+  _EncyclopediaExpertRecordScreenState createState() => _EncyclopediaExpertRecordScreenState(plant, login);
 }
 
-class _EncyclopediaRecordScreenState extends State<EncyclopediaRecordScreen> {
+class _EncyclopediaExpertRecordScreenState extends State<EncyclopediaExpertRecordScreen> {
   EncyclopediaRecord plant;
   String login;
-  _EncyclopediaRecordScreenState(this.plant, this.login);
+  _EncyclopediaExpertRecordScreenState(this.plant, this.login);
 
   @override
   void initState() {
@@ -44,7 +43,7 @@ class _EncyclopediaRecordScreenState extends State<EncyclopediaRecordScreen> {
         body: SafeArea(
             child: Column(
               children: <Widget>[
-                const SizedBox(
+                SizedBox(
                   height: 20.0,
                 ),
                 Row(
@@ -52,7 +51,7 @@ class _EncyclopediaRecordScreenState extends State<EncyclopediaRecordScreen> {
                     children: <Widget>[
                       Text(
                         plant.speciesName,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 30.0,
                           color: Colors.teal,
                         ),
@@ -63,7 +62,7 @@ class _EncyclopediaRecordScreenState extends State<EncyclopediaRecordScreen> {
                       ),
                     ]
                 ),
-                const Center(
+                Center(
                   child: Card(
                     margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 40.0),
                     child: SizedBox(
@@ -77,7 +76,7 @@ class _EncyclopediaRecordScreenState extends State<EncyclopediaRecordScreen> {
                 ),
                 Center(
                   child: Card(
-                    margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 40.0),
+                    margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 40.0),
                     child: SizedBox(
                       width: 300,
                       height: 250,
@@ -85,7 +84,7 @@ class _EncyclopediaRecordScreenState extends State<EncyclopediaRecordScreen> {
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Text(plant.speciesDescription,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontFamily: 'SourceSans3',
                                   color: Colors.black,
                                   fontSize: 12.0,
@@ -97,7 +96,7 @@ class _EncyclopediaRecordScreenState extends State<EncyclopediaRecordScreen> {
                   ),
                 ),
                 ElevatedButton(
-                  style: const ButtonStyle(
+                  style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll<Color>(Colors.black54),
                   ),
                   onPressed: () {
@@ -105,9 +104,19 @@ class _EncyclopediaRecordScreenState extends State<EncyclopediaRecordScreen> {
                         context, MaterialPageRoute(builder: (context) => AddPage(plant: plant, login: login))
                     );
                   },
-                  child: const Text('Add to your library'),
+                  child: Text('Add to your library'),
                 ),
-
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll<Color>(Colors.black54),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (context) => AddPage(plant: plant, login: login))
+                    );
+                  },
+                  child: Text('Modify'),
+                ),
               ],
             )
         )

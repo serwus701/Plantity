@@ -1,6 +1,6 @@
 from functionalities.admin_functionalities import edit_if_expert, delete_client, hide_record, delete_record
 from functionalities.expert_functionalities import add_plant_to_encyclopedia, edit_plant_description
-from functionalities.shared_functionalities import change_user_password, change_admin_password
+from functionalities.shared_functionalities import change_password, change_admin_password
 from functionalities.user_functionalities import search_for_plant_in_encyclopedia, add_plant_to_library, show_library, \
     delete_from_library
 
@@ -25,7 +25,7 @@ def user_interface():
         elif user_input == "5":
             delete_from_library()
         elif user_input == "6":
-            change_user_password()
+            change_password()
         else:
             print("wrong input")
 
@@ -54,7 +54,7 @@ def expert_interface():
         elif user_input == "7":
             edit_plant_description()
         elif user_input == "8":
-            change_user_password()
+            change_password()
         else:
             print("wrong input")
 
