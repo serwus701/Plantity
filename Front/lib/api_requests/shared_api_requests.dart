@@ -17,4 +17,20 @@ class SharedApiRequests {
       throw Exception('Failed to load data');
     }
   }
+
+  static Future<int> changePassword(String login, String newPassword) async {
+    var url = 'http://10.0.2.2:5000//change/password';
+    var response = await http.post(
+      Uri.parse(url),
+      body: jsonEncode({'username': login, 'password': newPassword}),
+    );
+
+    if (response.statusCode == 200) {
+      var data = json.decode(response.body);
+
+      return data["approval"];
+    } else {
+      throw Exception('Failed to load data');
+    }
+  }
 }

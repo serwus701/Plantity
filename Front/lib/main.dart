@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:front/screens/Shared/login_screen.dart';
 
 void main() {
-  runApp(GlobeApp());
+  runApp(const GlobeApp());
 }
 
 class GlobeApp extends StatelessWidget {

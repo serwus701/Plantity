@@ -43,4 +43,32 @@ class AdminApiRequests {
       bool answer = jsonDecode(response.body)['confirmation'];
       return answer;
   }
+
+  static Future<bool> deleteClient(String userLogin) async {
+
+    var url = 'http://10.0.2.2:5000//delete/user';
+    final response = await http.post(
+      Uri.parse(url),
+      body: jsonEncode({
+        'user_login': userLogin,
+      }),
+    );
+
+    bool answer = jsonDecode(response.body)['confirmation'];
+    return answer;
+  }
+
+  static Future<bool> deleteEncyclopediaRecord(String speciesName) async {
+
+    var url = 'http://10.0.2.2:5000//delete/encyclopedia';
+    final response = await http.post(
+      Uri.parse(url),
+      body: jsonEncode({
+        'species_name': speciesName,
+      }),
+    );
+
+    bool answer = jsonDecode(response.body)['confirmation'];
+    return answer;
+  }
 }
