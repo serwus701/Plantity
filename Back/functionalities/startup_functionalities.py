@@ -12,9 +12,6 @@ def login(login, password):
 
     login_result = sql_request_login(connection, login, password)
 
-    if login_result != 0:
-        shared_functionalities.user_logged = login
-
     connection.close()
 
     return login_result

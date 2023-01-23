@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 
-from sql_requests.shared_sql_requests import sql_change_user_password, sql_change_admin_password
+from sql_requests.shared_sql_requests import sql_change_user_password, sql_change_admin_password, sql_request_login
 from tools import is_user_or_admin
 
 url = 'mysql://login_manager:loginpassword123@127.0.0.1/plants'
@@ -11,10 +11,12 @@ USER = 1
 ADMIN = 2
 
 
-def change_password(new_password, user_logged):
+def change_password(user_logged, new_password, old_password):
     connection = engine.connect()
 
-    if is_user_or_admin(user_logged) == USER:
+    login_approval = sql_request_login(connection, user_logged, old_password)
+
+    if login_approval == USER:
         try:
             sql_change_user_password(connection, new_password, user_logged)
             connection.close()
@@ -23,7 +25,7 @@ def change_password(new_password, user_logged):
             connection.close()
             return False
 
-    if is_user_or_admin(user_logged) == ADMIN:
+    if login_approval == ADMIN:
         try:
             sql_change_admin_password(connection, new_password, user_logged)
             connection.close()
@@ -32,7 +34,7 @@ def change_password(new_password, user_logged):
             connection.close()
             return False
 
-    if is_user_or_admin(user_logged) == NEITHER:
+    if login_approval == NEITHER:
         connection.close()
         return False
 

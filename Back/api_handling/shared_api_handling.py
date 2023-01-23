@@ -33,7 +33,8 @@ def api_register():
 def api_change_password():
     data = json.loads(request.data)
     user_login = data['username']
-    new_password = data['password']
+    new_password = data['new_password']
+    old_password = data['old_password']
 
-    answer = {'approval': change_password(user_login, new_password)}
+    answer = {'approval': change_password(user_login, new_password, old_password)}
     return jsonify(answer)
