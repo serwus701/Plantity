@@ -47,6 +47,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
           ),),
         backgroundColor: Colors.teal,
       ),
+      drawer: NavigationDrawer(login: login,),
       body: ListView.builder(
         itemCount: _boxes.length,
         itemBuilder: (BuildContext context, int index) {
@@ -108,5 +109,70 @@ class _LibraryScreenState extends State<LibraryScreen> {
       ),
     );
   }
+}
+
+class NavigationDrawer extends StatefulWidget {
+  String login;
+  NavigationDrawer({super.key, required this.login});
+
+  @override
+  _NavigationDrawerState createState() => _NavigationDrawerState(login);
 
 }
+
+class _NavigationDrawerState extends State<NavigationDrawer>{
+  late String login;
+  _NavigationDrawerState(this.login);
+
+  @override
+  Widget build(BuildContext context) => Drawer(
+      child:SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              buildHeader(context),
+              buildMenuItems(context),
+            ],
+
+          )
+      )
+    );
+    Widget buildHeader(BuildContext context) => Container(
+        padding: EdgeInsets.only(
+          top: MediaQuery.of(context).padding.top,
+        )
+    );
+
+    Widget buildMenuItems(BuildContext context) => Container(
+      padding: const EdgeInsets.all(20),
+      child: Wrap(
+        runSpacing: 16,
+        children: [
+          ListTile(
+            leading: const Icon(Icons.spa),
+            title: const Text('Library'),
+            onTap: () =>
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => LibraryScreen(login: login))
+                ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.menu_book),
+            title: const Text('Encyclopedia'),
+            onTap: () =>
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => EncyclopediaScreen(login: login)),
+                ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.person),
+            title: const Text('Profile'),
+            onTap: () {},
+          ),
+        ],
+      ),
+    );
+
+      }
+
+
+
+
