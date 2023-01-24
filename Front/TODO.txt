@@ -1,12 +1,15 @@
 ///checkboxy do library_record_screen
 - checkboxy pamięć czy przy zamknietej apce dziala
-- gwiazdeczki (?) w encyclopedia_record_screen jako podstawowe info
+///gwiazdeczki (?) w encyclopedia_record_screen jako podstawowe info
+- do gwiazdek - jak się najedzie to pisze, co to dokładnie oznacza
 ///addplant odpowiada
 - panel użytkownika?
-- menu może?
+///menu może
 ///usuwanie roslin (jest juz zapytanie do api)
 ///library screen wycentrować
-- zmiana hasła użytkownik
+- zmiana hasła użytkownik - g, tylko gdzieś wsadzić
+
+-scrollowanie w środku encyclopedia panel bo nie działa ugh
 
 
 EXPERT:
@@ -17,4 +20,5 @@ EXPERT:
 ADMIN:
 - don't even get me started (a dokładniej):
 - encyclopedia record z opcją usunięcia (easy bo na podstawie recordu użytkownika z opcją usunięcia jak w library record)
+- lista użytkowników i możliwość zmiany rangi na eksperta i usunięcia rangi
 ///wyśrodkować text library_record_screen i encyclopedia_record_screen
