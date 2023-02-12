@@ -12,12 +12,13 @@ def api_add_encyclopedia():
     user_input = []
 
     user_input.insert(0, data['photo_id'])
-    user_input.insert(1, data['species_name'])
-    user_input.insert(2, data['species_description'])
-    user_input.insert(3, data['how_often_to_water'])
-    user_input.insert(4, data['amount_of_sun'])
-    user_input.insert(5, data['amount_of_water'])
-    user_input.insert(6, data['difficulty'])
+    user_input.insert(1, data['photo'])
+    user_input.insert(2, data['species_name'])
+    user_input.insert(3, data['species_description'])
+    user_input.insert(4, data['how_often_to_water'])
+    user_input.insert(5, data['amount_of_sun'])
+    user_input.insert(6, data['amount_of_water'])
+    user_input.insert(7, data['difficulty'])
 
     answer = {'confirmation': add_plant_to_encyclopedia(user_input)}
 

@@ -1,10 +1,14 @@
-import 'package:front/utils/encyclopedia_record.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'dart:io';
+
+import '../utils/tools.dart';
+
 
 class ExpertApiRequest {
   static Future<bool> addPlantToEncyclopedia(
       String photoId,
+      File photo,
       String speciesName,
       String speciesDescription,
       int howOftenToWater,
@@ -16,6 +20,7 @@ class ExpertApiRequest {
       Uri.parse(url),
       body: jsonEncode({
         'photo_id': photoId,
+        'photo': imageToBase64(photo),
         'species_name': speciesName,
         'species_description': speciesDescription,
         'how_often_to_water': howOftenToWater,
