@@ -29,3 +29,16 @@ def edit_plant_description(species_name, new_plant_description):
     except:
         connection.close()
         return False
+
+
+def edit_plant_photo(species_name, photo):
+    connection = engine.connect()
+
+    try:
+        sql_request_edit_plant_photo(connection, species_name,
+                                     photo)
+        connection.close()
+        return True
+    except:
+        connection.close()
+        return False

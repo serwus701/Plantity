@@ -34,13 +34,27 @@ class ExpertApiRequest {
     return answer;
   }
 
-  static Future<bool> editPlantToEncyclopedia(String speciesName,String plantDescription) async {
+  static Future<bool> editSpeciesDescription(String speciesName,String speciesDescription) async {
     var url = 'http://10.0.2.2:5000//edit/encyclopedia';
     final response = await http.post(
       Uri.parse(url),
       body: jsonEncode({
         'species_name': speciesName,
-        'plant_description': plantDescription,
+        'plant_description': speciesDescription,
+      }),
+    );
+
+    bool answer = jsonDecode(response.body)['confirmation'];
+    return answer;
+  }
+
+  static Future<bool> editSpeciesPicture(String speciesName,File speciesPicture) async {
+    var url = 'http://10.0.2.2:5000//edit/encyclopedia/photo';
+    final response = await http.post(
+      Uri.parse(url),
+      body: jsonEncode({
+        'species_name': speciesName,
+        'photo': imageToBase64(speciesPicture),
       }),
     );
 

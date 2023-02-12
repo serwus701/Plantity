@@ -2,7 +2,7 @@ from flask import jsonify, request
 import json
 from __main__ import app
 
-from functionalities.expert_functionalities import add_plant_to_encyclopedia, edit_plant_description
+from functionalities.expert_functionalities import add_plant_to_encyclopedia, edit_plant_description, edit_plant_photo
 
 
 @app.route('/add/encyclopedia', methods=['POST'])
@@ -33,5 +33,17 @@ def api_edit_encyclopedia():
     description = data['plant_description']
 
     json_answer = json.dumps(edit_plant_description(species_name, description))
+
+    return json_answer
+
+
+@app.route('/edit/encyclopedia/photo', methods=['POST'])
+def api_edit_encyclopedia_photo():
+    data = json.loads(request.data)
+
+    species_name = data['species_name']
+    photo = data['photo']
+
+    json_answer = json.dumps(edit_plant_photo(species_name, photo))
 
     return json_answer

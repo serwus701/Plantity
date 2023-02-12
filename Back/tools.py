@@ -39,6 +39,11 @@ def blob_to_base64(blob):
         return image_base64
 
 
+def base64_to_blob(base64_string):
+    binary_data = base64.b64decode(base64_string)
+    return binary_data
+
+
 def get_library_id(user_login):
     try:
         sql_query = """SELECT user_id FROM plants.users WHERE user_login = %s"""
