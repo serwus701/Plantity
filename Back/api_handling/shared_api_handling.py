@@ -1,8 +1,7 @@
 from flask import jsonify, request
 import json
 
-from functionalities.shared_functionalities import change_password
-from functionalities.startup_functionalities import login, register
+from functionalities.shared_functionalities import change_password, login, register
 
 from __main__ import app
 

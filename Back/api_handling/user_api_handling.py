@@ -2,7 +2,7 @@ from flask import jsonify, request
 import json
 from __main__ import app
 
-from functionalities.user_functionalities import search_for_plant_in_encyclopedia, add_plant_to_library, show_library, \
+from functionalities.user_functionalities import get_plants_from_encyclopedia, add_plant_to_library, show_library, \
     delete_from_library
 
 
@@ -12,7 +12,7 @@ def api_search_encyclopedia():
 
     search_text = data['search_text']
 
-    json_answer = json.dumps(search_for_plant_in_encyclopedia(search_text))
+    json_answer = json.dumps(get_plants_from_encyclopedia())
 
     return json_answer
 

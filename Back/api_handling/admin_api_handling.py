@@ -38,7 +38,7 @@ def api_delete_client():
     return jsonify(answer)
 
 
-@app.route('/delete/encyclopedia', methods=['POST'])
+@app.route('/delete/', methods=['POST'])
 def api_delete_record():
     data = json.loads(request.data)
 

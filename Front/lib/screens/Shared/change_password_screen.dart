@@ -15,8 +15,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   final _formKey = GlobalKey<FormState>();
   late String _login, _password;
 
-  void changePassword(String login, String password) async {
-    await SharedApiRequests.changePassword(login, password);
+  void changePassword(String login, String oldPassword, String newPassword) async {
+    await SharedApiRequests.changePassword(login, oldPassword, newPassword);
     setState(() {});
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => LibraryScreen(login: login))
@@ -89,7 +89,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                 backgroundColor: MaterialStatePropertyAll<Color>(Colors.black54),
               ),
               onPressed: () {
-                changePassword(_login, _password);
+                changePassword(_login, _password, _password);
               },
               child: const Text('Change password'),
             ),

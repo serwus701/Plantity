@@ -1,10 +1,11 @@
 import pandas as pd
 
-from tools import get_dataframe_size, get_library_id
+from tools import get_dataframe_size, get_library_id, blob_to_base64
 
 
-def sql_request_search_for_plants(connection, search_text):
-    plants_details = {"photo_id": [], "species_name": [], "species_description": [], "how_often_to_water": [],
+def sql_request_get_plants_from_encyclopedia(connection):
+    plants_details = {"photo_id": [], "photo": [], "species_name": [], "species_description": [],
+                      "how_often_to_water": [],
                       "amount_of_sun": [], "amount_of_water": [], "difficulty": []}
 
     sql_query = """SELECT * FROM plants.encyclopedia"""
@@ -14,12 +15,13 @@ def sql_request_search_for_plants(connection, search_text):
     size = get_dataframe_size(df)
 
     for i in range(size):
-        if search_text.lower() in df.iloc[i]["species_name"].lower():
-            for key in plants_details:
-                if str(type(df.iloc[i][key])) == "<class 'numpy.int64'>":
-                    plants_details[key].insert(0, int(df.iloc[i][key]))
-                else:
-                    plants_details[key].insert(0, df.iloc[i][key])
+        for key in plants_details:
+            if key == "photo":
+                plants_details[key].insert(0, blob_to_base64(df.iloc[i][key]))
+            elif str(type(df.iloc[i][key])) == "<class 'numpy.int64'>":
+                plants_details[key].insert(0, int(df.iloc[i][key]))
+            else:
+                plants_details[key].insert(0, df.iloc[i][key])
 
     return plants_details
 
@@ -36,7 +38,7 @@ def sql_request_add_plant_to_library(connection, species_name, plant_nickname, u
 
 
 def sql_request_get_plants_from_library(connection, user_logged):
-    plants_details = {"plant_name": [], "photo_id": [], "species_name": [], "species_description": [],
+    plants_details = {"plant_name": [], "photo_id": [], "photo": [], "species_name": [], "species_description": [],
                       "how_often_to_water": [],
                       "amount_of_sun": [], "amount_of_water": [], "difficulty": []}
 
@@ -60,7 +62,9 @@ def sql_request_get_plants_from_library(connection, user_logged):
         for key in plants_details:
             if key == "plant_name":
                 continue
-            if str(type(species_df.iloc[0][key])) == "<class 'numpy.int64'>":
+            if key == "photo":
+                plants_details[key].insert(i, blob_to_base64(species_df.iloc[0][key]))
+            elif str(type(species_df.iloc[0][key])) == "<class 'numpy.int64'>":
                 plants_details[key].insert(i, int(species_df.iloc[0][key]))
             else:
                 plants_details[key].insert(i, species_df.iloc[0][key])

@@ -40,6 +40,7 @@ CREATE TABLE libraries (
 CREATE TABLE encyclopedia (
 	species_id integer(10) NOT NULL AUTO_INCREMENT,
     photo_id varchar(20) UNIQUE,
+    photo BLOB,
     species_name varchar(20) UNIQUE NOT NULL,
     species_description varchar(500),
     how_often_to_water integer(1),

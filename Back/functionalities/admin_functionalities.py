@@ -2,7 +2,6 @@ import sys
 
 from sqlalchemy import create_engine
 
-from functionalities.user_functionalities import search_for_plant_in_encyclopedia
 from sql_requests.admin_sql_requests import sql_request_edit_if_expert, sql_request_delete_client, \
     sql_request_delete_record, sql_request_get_users
 
