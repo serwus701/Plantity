@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine
 
-from sql_requests.expert_sql_requests import sql_request_add_plant_to_encyclopedia, sql_request_edit_plant_description
+from sql_requests.expert_sql_requests import sql_request_add_plant_to_encyclopedia, sql_request_edit_plant_description, \
+    sql_request_edit_plant_photo
 
 url = 'mysql://expert:456password@127.0.0.1/plants'
 engine = create_engine(url)
@@ -35,8 +36,7 @@ def edit_plant_photo(species_name, photo):
     connection = engine.connect()
 
     try:
-        sql_request_edit_plant_photo(connection, species_name,
-                                     photo)
+        sql_request_edit_plant_photo(connection, species_name, photo)
         connection.close()
         return True
     except:
