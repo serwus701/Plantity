@@ -154,22 +154,22 @@ VALUES ("Gruby", 1, 2);
 
 
 
-CREATE USER 'user'@'localhost' IDENTIFIED BY '123password';
+CREATE USER 'user'@'localhost' IDENTIFIED BY '123Password_';
 GRANT ALL PRIVILEGES ON plants.plants TO 'user'@'localhost';
 GRANT SELECT ON plants.encyclopedia TO 'user'@'localhost';
 
-CREATE USER 'expert'@'localhost' IDENTIFIED BY '456password';
+CREATE USER 'expert'@'localhost' IDENTIFIED BY '456Password_';
 GRANT ALL PRIVILEGES ON plants.plants TO 'expert'@'localhost';
 GRANT INSERT, UPDATE, SELECT ON plants.encyclopedia TO 'expert'@'localhost';
 
-CREATE USER 'admin'@'localhost' IDENTIFIED BY '789password';
+CREATE USER 'admin'@'localhost' IDENTIFIED BY '789Password_';
 GRANT SELECT, UPDATE ON plants.admins TO 'admin'@'localhost';
 GRANT ALL PRIVILEGES ON plants.users TO 'admin'@'localhost';
 GRANT ALL PRIVILEGES ON plants.plants TO 'admin'@'localhost';
 GRANT INSERT, DELETE,SELECT ON plants.encyclopedia TO 'admin'@'localhost';
 GRANT SELECT, DELETE ON plants.libraries TO 'admin'@'localhost';
 
-CREATE USER 'login_manager'@'localhost' IDENTIFIED BY 'loginpassword123';
+CREATE USER 'login_manager'@'localhost' IDENTIFIED BY 'loginPassword123_';
 GRANT SELECT, UPDATE, INSERT ON plants.users TO 'login_manager'@'localhost';
 GRANT SELECT, UPDATE ON plants.admins TO 'login_manager'@'localhost';
 GRANT SELECT ON plants.libraries TO 'login_manager'@'localhost';
