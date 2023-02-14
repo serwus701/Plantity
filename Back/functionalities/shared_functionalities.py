@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from sql_requests.shared_sql_requests import sql_change_user_password, sql_change_admin_password, sql_request_login, \
     sql_request_register
 
-url = 'mysql://login_manager:loginpassword123@127.0.0.1/plants'
+url = 'mysql://login_manager:loginPassword123_@127.0.0.1/plants'
 engine = create_engine(url)
 
 

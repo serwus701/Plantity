@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 from sqlalchemy import create_engine
 
-url = 'mysql://login_manager:loginpassword123@127.0.0.1/plants'
+url = 'mysql://login_manager:loginPassword123_@127.0.0.1/plants'
 engine = create_engine(url)
 connection = engine.connect()
 

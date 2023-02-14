@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from sql_requests.expert_sql_requests import sql_request_add_plant_to_encyclopedia, sql_request_edit_plant_description, \
     sql_request_edit_plant_photo
 
-url = 'mysql://expert:456password@127.0.0.1/plants'
+url = 'mysql://expert:456Password_@127.0.0.1/plants'
 engine = create_engine(url)
 
 
