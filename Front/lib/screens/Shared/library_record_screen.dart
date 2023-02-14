@@ -3,6 +3,8 @@ import 'package:front/screens/Shared/delete_plant_screen.dart';
 import 'package:front/screens/User/encyclopedia_record_screen.dart';
 
 import '../../utils/encyclopedia_record.dart';
+import '../User/encyclopedia_screen.dart';
+import 'library_screen.dart';
 
 class LibraryRecord extends StatefulWidget {
   String login;
@@ -79,6 +81,7 @@ class _LibraryRecordState extends State<LibraryRecord> {
               )),
           backgroundColor: Colors.teal,
         ),
+      drawer: NavigationDrawer(login: login,),
         body: SafeArea(
             child: Column(
               children: <Widget>[
@@ -170,4 +173,67 @@ class _LibraryRecordState extends State<LibraryRecord> {
     ),
     );
   }
+}
+
+
+class NavigationDrawer extends StatefulWidget {
+  String login;
+  NavigationDrawer({super.key, required this.login});
+
+  @override
+  _NavigationDrawerState createState() => _NavigationDrawerState(login);
+
+}
+
+class _NavigationDrawerState extends State<NavigationDrawer>{
+  late String login;
+  _NavigationDrawerState(this.login);
+
+  @override
+  Widget build(BuildContext context) => Drawer(
+      child:SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              buildHeader(context),
+              buildMenuItems(context),
+            ],
+
+          )
+      )
+  );
+  Widget buildHeader(BuildContext context) => Container(
+      padding: EdgeInsets.only(
+        top: MediaQuery.of(context).padding.top,
+      )
+  );
+
+  Widget buildMenuItems(BuildContext context) => Container(
+    padding: const EdgeInsets.all(20),
+    child: Wrap(
+      runSpacing: 16,
+      children: [
+        ListTile(
+          leading: const Icon(Icons.spa),
+          title: const Text('Library'),
+          onTap: () =>
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => LibraryScreen(login: login))
+              ),
+        ),
+        ListTile(
+          leading: const Icon(Icons.menu_book),
+          title: const Text('Encyclopedia'),
+          onTap: () =>
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => EncyclopediaScreen(login: login)),
+              ),
+        ),
+        ListTile(
+          leading: const Icon(Icons.person),
+          title: const Text('Profile'),
+          onTap: () {},
+        ),
+      ],
+    ),
+  );
+
 }

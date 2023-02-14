@@ -1,8 +1,7 @@
 from flask import jsonify, request
 import json
 
-from functionalities.shared_functionalities import change_password
-from functionalities.startup_functionalities import login, register
+from functionalities.shared_functionalities import change_password, login, register
 
 from __main__ import app
 
@@ -33,7 +32,8 @@ def api_register():
 def api_change_password():
     data = json.loads(request.data)
     user_login = data['username']
-    new_password = data['password']
+    new_password = data['new_password']
+    old_password = data['old_password']
 
-    answer = {'approval': change_password(user_login, new_password)}
+    answer = {'approval': change_password(user_login, new_password, old_password)}
     return jsonify(answer)

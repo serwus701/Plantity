@@ -1,16 +1,16 @@
 from sqlalchemy import create_engine
 
-from sql_requests.user_sql_requests import sql_request_search_for_plants, sql_request_add_plant_to_library, \
+from sql_requests.user_sql_requests import sql_request_get_plants_from_encyclopedia, sql_request_add_plant_to_library, \
     sql_request_get_plants_from_library, sql_request_delete_from_library
 
-url = 'mysql://user:123password@127.0.0.1/plants'
+url = 'mysql://user:123Password_@127.0.0.1/plants'
 engine = create_engine(url)
 
 
-def search_for_plant_in_encyclopedia(user_search):
+def get_plants_from_encyclopedia():
     connection = engine.connect()
 
-    filtered_plants = sql_request_search_for_plants(connection, user_search)
+    filtered_plants = sql_request_get_plants_from_encyclopedia(connection)
 
     connection.close()
     return filtered_plants

@@ -1,4 +1,5 @@
 import 'package:front/utils/encyclopedia_record.dart';
+import 'package:front/utils/tools.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -51,6 +52,7 @@ class UserApiRequests {
           var record = EncyclopediaRecord(
               "",
               data["photo_id"][i],
+              base64ToImage(data["photo"][i]),
               data["species_name"][i],
               data["species_description"][i],
               data["how_often_to_water"][i],
@@ -81,6 +83,7 @@ class UserApiRequests {
           var record = EncyclopediaRecord(
               data["plant_name"][i],
               data["photo_id"][i],
+              base64ToImage(data["photo"][i]),
               data["species_name"][i],
               data["species_description"][i],
               data["how_often_to_water"][i],
